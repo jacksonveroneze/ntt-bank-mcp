@@ -1,0 +1,43 @@
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using NttBank.Mcp.Infrastructure.Configurations;
+
+namespace NttBank.Mcp.Mcp.Extensions;
+
+[ExcludeFromCodeCoverage]
+public static class AuthenticationExtensions
+{
+    public static IServiceCollection AddAppAuthentication(
+        this IServiceCollection services,
+        AppConfiguration appConfiguration)
+    {
+        ArgumentNullException.ThrowIfNull(appConfiguration);
+
+        services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.RequireHttpsMetadata = true;
+                options.Authority = appConfiguration.Auth!.Authority;
+                options.Audience = appConfiguration.Auth.Audience;
+
+                options.TokenValidationParameters =
+                    new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = appConfiguration!.Auth!.Issuer,
+                        ValidAudience = appConfiguration.Auth.Audience,
+                        ClockSkew = TimeSpan.Zero,
+                    };
+            });
+
+        return services;
+    }
+}

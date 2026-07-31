@@ -27,6 +27,8 @@
 
     <PackageReference Include="Refit.HttpClientFactory" />
     <PackageReference Include="Refit.Reflection" />
+    
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
   </ItemGroup>
 

@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using JacksonVeroneze.NET.Result;
 using ModelContextProtocol.Protocol;
-using NttBank.Mcp.Mcp.Mcp.Util;
 using Result = JacksonVeroneze.NET.Result.Result;
 
 namespace NttBank.Mcp.Mcp.Mcp.Extensions;

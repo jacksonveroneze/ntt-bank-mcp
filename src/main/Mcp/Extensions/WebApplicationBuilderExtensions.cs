@@ -17,8 +17,8 @@ internal static class WebApplicationBuilderExtensions
             builder.AddLogger(appConfiguration);
 
             builder.Services
-                .AddAuthentication(appConfiguration)
-                .AddAuthorization(appConfiguration)
+                .AddAppAuthentication(appConfiguration)
+                .AddAppAuthorization(appConfiguration)
                 .AddMcp(appConfiguration)
                 .AddJsonOptionsSerialize()
                 .AddCorrelation()

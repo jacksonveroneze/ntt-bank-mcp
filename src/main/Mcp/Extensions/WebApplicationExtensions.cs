@@ -20,10 +20,11 @@ internal static class WebApplicationExtensions
         app.UseHealthChecks(PathHealth);
         app.UseOpenTelemetryPrometheusScrapingEndpoint(PathMetrics);
 
-        //app.UseAuthentication();
-        //app.UseAuthorization();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
-        app.MapMcp(PathMcp);
+        app.MapMcp(PathMcp)
+            .RequireAuthorization();
         
         return app;
     }

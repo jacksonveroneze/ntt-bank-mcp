@@ -15,6 +15,11 @@ internal static class ExceptionToolFilter
             {
                 return await next(context, cancellationToken);
             }
+            catch (OperationCanceledException)
+                when (cancellationToken.IsCancellationRequested)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 var logger = context.Services

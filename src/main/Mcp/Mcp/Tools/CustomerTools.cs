@@ -5,11 +5,11 @@ using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using NttBank.Mcp.Application.Customers.GetCustomer;
 using NttBank.Mcp.Mcp.Mcp.Extensions;
+using NttBank.Mcp.Mcp.Security;
 
 namespace NttBank.Mcp.Mcp.Mcp.Tools;
 
 [McpServerToolType]
-[AllowAnonymous]
 public sealed class CustomerTools
 {
     #region constants
@@ -33,6 +33,7 @@ public sealed class CustomerTools
         Name = GetCustomerToolName, 
         Title = GetCustomerToolTitle)]
     [Description(GetCustomerToolDesc)]
+    [Authorize(Policy = AuthorizationPolicies.CustomerRead)]
     public async Task<CallToolResult> GetByIdAsync(
         IValidator<GetCustomerRequest> validator,
         IGetCustomerUseCase useCase,
