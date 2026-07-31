@@ -1,45 +1,30 @@
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 using ModelContextProtocol.Protocol;
-using NttBank.Mcp.Mcp.Mcp.Util;
 
 namespace NttBank.Mcp.Mcp.Mcp.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class ValidationResultExtensions
 {
-    extension(ValidationResult validationResult)
+    public static CallToolResult ToCallToolResultError(
+        this ValidationResult validationResult)
     {
-        public CallToolResult ToCallToolResultError(string? message = null)
-        {
-            ArgumentNullException.ThrowIfNull(validationResult);
+        ArgumentNullException.ThrowIfNull(validationResult);
         
-            var erros = validationResult.ToDictionary();
+        var details = validationResult.Errors
+            .GroupBy(
+                e => e.PropertyName,
+                StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(e => e.ErrorMessage).AsEnumerable(),
+                StringComparer.OrdinalIgnoreCase);
 
-            return McpToolResult.Error(
-                code: "VALIDATION_ERROR",
-                message: message ?? "Invalid input.",
-                details: erros);
-        }
-
-        internal IDictionary<string, string[]> ToValidationProblemDictionary()
-        {
-            return validationResult.Errors
-                .GroupBy(
-                    error => error.PropertyName,
-                    comparer: StringComparer.OrdinalIgnoreCase)
-                .ToDictionary(
-                    group => group.Key,
-                    group => group
-                        .Select(error => error.ErrorMessage)
-                        .ToArray(),
-                    StringComparer.OrdinalIgnoreCase);
-        }
-
-        internal IResult ToValidationProblem()
-        {
-            return Results.ValidationProblem(
-                validationResult.ToValidationProblemDictionary());
-        }
+        return McpToolResult.Failure(
+            status:  "invalid",
+            code:    "VALIDATION_ERROR",
+            message: "One or more input fields are invalid.",
+            details: details);
     }
 }

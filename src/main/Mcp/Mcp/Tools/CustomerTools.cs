@@ -1,6 +1,6 @@
 using System.ComponentModel;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using NttBank.Mcp.Application.Customers.GetCustomer;
@@ -14,32 +14,44 @@ public sealed class CustomerTools
 {
     #region constants
 
-    private const string GetByIdOrderToolName = "get_customer_by_id";
-    private const string GetByIdOrderToolTitle = "get customer by id";
-    private const string GetByIdOrderToolDesc = "Retrieves a customer by its identifier.";
-    private const string GetByIdIdParamDesc = "The identifier of the customer to retrieve.";
+    private const string GetCustomerToolName = "get_customer_by_id";
+    private const string GetCustomerToolTitle = "Get Customer by ID";
+
+    private const string GetCustomerToolDesc =
+        """
+        Retrieves full profile data for a single customer by their unique numeric ID.
+        Returns customer details on success, or a not_found result if no customer
+        exists with the given ID. Use this tool when you need to look up a specific customer.
+        """;
+
+    private const string GetCustomerIdParamDesc =
+        "The unique numeric identifier of the customer (must be greater than zero).";
 
     #endregion
 
     [McpServerTool(
-        Name = GetByIdOrderToolName,
-        Title = GetByIdOrderToolTitle
-    )]
-    [Description(GetByIdOrderToolDesc)]
-    [McpMeta("category", "weather")]
-    [McpMeta("recommendedModel", "gpt-4")]
+        Name = GetCustomerToolName, 
+        Title = GetCustomerToolTitle)]
+    [Description(GetCustomerToolDesc)]
     public async Task<CallToolResult> GetByIdAsync(
-        [FromServices] IGetCustomerUseCase useCase,
-        [Description(GetByIdIdParamDesc)] int id,
+        IValidator<GetCustomerRequest> validator,
+        IGetCustomerUseCase useCase,
+        [Description(GetCustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken)
     {
-        var request = new GetCustomerRequest(id);
+        var request = new GetCustomerRequest(customerId);
+
+        var validation = await validator
+            .ValidateAsync(request, cancellationToken);
+
+        if (!validation.IsValid)
+        {
+            return validation.ToCallToolResultError();
+        }
 
         var result = await useCase
             .ExecuteAsync(request, cancellationToken);
 
-        return result.IsSuccess
-            ? result.ToCallToolResultSuccess()
-            : result.ToCallToolResultError();
+        return result.ToCallToolResult();
     }
 }

@@ -28,7 +28,8 @@ public static class OpenTelemetryExtensions
 
         services.AddOpenTelemetry()
             .ConfigureResource(ConfigureResource)
-            .AddMetrics();
+            .AddMetrics(appConfiguration)
+            .AddTracing(appConfiguration);
 
         return services;
 
@@ -43,10 +44,11 @@ public static class OpenTelemetryExtensions
 
     extension(IOpenTelemetryBuilder builder)
     {
-        private IOpenTelemetryBuilder AddMetrics()
+        private IOpenTelemetryBuilder AddMetrics(
+            AppConfiguration appConfiguration)
         {
             builder.WithMetrics(opts => opts
-                .AddMeter("orders-agent")
+                .AddMeter(appConfiguration.Application!.Name!)
                 .AddProcessInstrumentation()
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
@@ -56,12 +58,13 @@ public static class OpenTelemetryExtensions
             return builder;
         }
         
-        private IOpenTelemetryBuilder AddTracing()
+        private IOpenTelemetryBuilder AddTracing(
+            AppConfiguration appConfiguration)
         {
             builder.WithTracing(tracing =>
             {
                 tracing
-                    .AddSource("orders-agent")
+                    .AddSource(appConfiguration.Application!.Name!)
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation();
             });

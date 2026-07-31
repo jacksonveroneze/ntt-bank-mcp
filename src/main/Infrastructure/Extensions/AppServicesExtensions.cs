@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NttBank.Mcp.Application.Abstractions.Repositories;
 using NttBank.Mcp.Application.Abstractions.Services;
 using NttBank.Mcp.Application.Customers.GetCustomer;
-using NttBank.Mcp.Infrastructure.Repositories.Order;
+using NttBank.Mcp.Infrastructure.Repositories;
 using NttBank.Mcp.Infrastructure.Services;
 
 namespace NttBank.Mcp.Infrastructure.Extensions;

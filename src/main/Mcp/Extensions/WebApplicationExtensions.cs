@@ -15,9 +15,6 @@ internal static class WebApplicationExtensions
 
         app.UseCorrelationId();
         
-        app.UseExceptionHandler();
-        app.UseStatusCodePages();
-
         app.UseRouting();
 
         app.UseHealthChecks(PathHealth);

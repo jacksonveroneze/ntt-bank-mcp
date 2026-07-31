@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using ModelContextProtocol.Protocol;
 
 namespace NttBank.Mcp.Mcp.Mcp.Util;
@@ -6,7 +7,10 @@ namespace NttBank.Mcp.Mcp.Mcp.Util;
 public static class McpToolResult
 {
     private static readonly JsonSerializerOptions JsonOptions =
-        new(JsonSerializerDefaults.Web);
+        new(JsonSerializerDefaults.Web)
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        };
 
     public static CallToolResult Success<T>(
         string message,

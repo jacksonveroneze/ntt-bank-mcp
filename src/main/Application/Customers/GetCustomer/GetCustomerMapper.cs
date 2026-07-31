@@ -1,5 +1,5 @@
 using Mapster;
-using NttBank.Mcp.Domain.Entities;
+using NttBank.Mcp.Domain.Results;
 
 namespace NttBank.Mcp.Application.Customers.GetCustomer;
 
@@ -9,7 +9,7 @@ public class GetCustomerMapper : IRegister
     {
         ArgumentNullException.ThrowIfNull(config);
 
-        config.NewConfig<Customer, GetCustomerResponse>()
+        config.NewConfig<CustomerResult, GetCustomerResponse>()
             .Map(dest => dest.CustomerId, src => src.CustomerId)
             .Map(dest => dest.Name, src => src.Name)
             .Map(dest => dest.Gender, src => src.Gender)

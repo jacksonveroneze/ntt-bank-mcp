@@ -1,4 +1,4 @@
-using NttBank.Mcp.Infrastructure.Results;
+using NttBank.Mcp.Domain.Results;
 using Refit;
 
 namespace NttBank.Mcp.Infrastructure.HttpClients;
@@ -6,7 +6,7 @@ namespace NttBank.Mcp.Infrastructure.HttpClients;
 public interface INttBankApi
 {
     [Get("/customers/{id}")]
-    Task<CustomerResult?> GetCustomerByIdAsync(
+    Task<CustomerResult> GetCustomerByIdAsync(
         int id,
         CancellationToken cancellationToken);
 }

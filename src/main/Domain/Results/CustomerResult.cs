@@ -1,6 +1,6 @@
-namespace NttBank.Mcp.Infrastructure.Results;
-
 using System.Text.Json.Serialization;
+
+namespace NttBank.Mcp.Domain.Results;
 
 public sealed record CustomerResult
 {

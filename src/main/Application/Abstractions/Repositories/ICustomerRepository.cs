@@ -1,10 +1,10 @@
-using NttBank.Mcp.Domain.Entities;
+using NttBank.Mcp.Domain.Results;
 
 namespace NttBank.Mcp.Application.Abstractions.Repositories;
 
 public interface ICustomerRepository
 {
-    Task<Customer?> GetByIdAsync(
+    Task<CustomerResult?> GetByIdAsync(
         int id,
         CancellationToken cancellationToken);
 }

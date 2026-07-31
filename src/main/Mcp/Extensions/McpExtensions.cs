@@ -23,6 +23,7 @@ public static class McpExtensions
                 };
             })
             .AddAuthorizationFilters()
+            .AddExceptionFilter()
             .WithHttpTransport(options => { options.Stateless = true; })
             .WithTools<CustomerTools>()
             .WithPrompts<ComplexPromptType>();
