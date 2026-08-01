@@ -23,6 +23,7 @@ internal static class WebApplicationBuilderExtensions
                 .AddJsonOptionsSerialize()
                 .AddCorrelation()
                 .AddCultureConfiguration()
+                .AddApplicationServices()
                 .AddHttpClient(appConfiguration)
                 .AddFluentValidation(AssemblyReference.Assembly)
                 .AddMapper(AssemblyReference.Assembly)

@@ -30,6 +30,7 @@
     
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+    <PackageReference Include="Duende.AccessTokenManagement" />
   </ItemGroup>
 
 </Project>

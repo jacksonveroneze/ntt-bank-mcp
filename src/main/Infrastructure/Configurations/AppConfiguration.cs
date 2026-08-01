@@ -7,7 +7,9 @@ public sealed record AppConfiguration
 {
     public AppInfoConfiguration? Application { get; init; }
     
-    public AuthConfiguration? Auth { get; init; }
+    public AuthTokenAuthenticationConfiguration? AuthTokenAuthentication { get; init; }
 
-    public HttpClientConfiguration? HttpClientNttBank { get; set; }
+    public AuthTokenGeneratorConfiguration? AuthTokenGenerator { get; init; }
+    
+    public HttpClientConfiguration? HttpClientNttBank { get; init; }
 }

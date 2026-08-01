@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace NttBankMcp.Infrastructure.Configurations;
 
 [ExcludeFromCodeCoverage]
-public sealed record AuthConfiguration
+public sealed record AuthTokenAuthenticationConfiguration
 {
     public string? Authority { get; init; }
     

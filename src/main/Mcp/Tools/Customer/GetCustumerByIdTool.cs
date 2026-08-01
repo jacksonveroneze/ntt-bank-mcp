@@ -10,7 +10,9 @@ using NttBankMcp.Mcp.Security;
 namespace NttBankMcp.Mcp.Tools.Customer;
 
 [McpServerToolType]
-public sealed class GetCustumerByIdTool
+public sealed class GetCustumerByIdTool(
+    IValidator<GetCustomerRequest> validator,
+    IGetCustomerUseCase useCase)
 {
     #region constants
 
@@ -35,8 +37,6 @@ public sealed class GetCustumerByIdTool
     [Description(GetCustomerToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerRead)]
     public async Task<CallToolResult> GetByIdAsync(
-        IValidator<GetCustomerRequest> validator,
-        IGetCustomerUseCase useCase,
         [Description(GetCustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken)
     {

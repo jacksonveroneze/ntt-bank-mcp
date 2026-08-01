@@ -22,8 +22,8 @@ public static class AuthenticationExtensions
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
                 options.RequireHttpsMetadata = true;
-                options.Authority = appConfiguration.Auth!.Authority;
-                options.Audience = appConfiguration.Auth.Audience;
+                options.Authority = appConfiguration.AuthTokenAuthentication!.Authority;
+                options.Audience = appConfiguration.AuthTokenAuthentication.Audience;
 
                 options.TokenValidationParameters =
                     new TokenValidationParameters
@@ -32,8 +32,8 @@ public static class AuthenticationExtensions
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = appConfiguration!.Auth!.Issuer,
-                        ValidAudience = appConfiguration.Auth.Audience,
+                        ValidIssuer = appConfiguration!.AuthTokenAuthentication!.Issuer,
+                        ValidAudience = appConfiguration.AuthTokenAuthentication.Audience,
                         ClockSkew = TimeSpan.Zero,
                     };
             });
