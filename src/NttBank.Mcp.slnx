@@ -17,6 +17,9 @@
     <Folder Name="/SolutionItems/claude/skills/new-mcp-tool/">
         <File Path="..\.claude\skills\new-mcp-tool\SKILL.md" />
     </Folder>
+    <Folder Name="/SolutionItems/claude/skills/new-usecase/">
+        <File Path="..\.claude\skills\new-usecase\SKILL.md" />
+    </Folder>
     <Folder Name="/SolutionItems/infra/" />
     <Folder Name="/SolutionItems/infra/docker/">
         <File Path="../infra/docker/.env" />
