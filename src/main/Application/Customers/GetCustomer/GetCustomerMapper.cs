@@ -1,7 +1,7 @@
 using Mapster;
-using NttBank.Mcp.Domain.Results;
+using NttBankMcp.Domain.Results;
 
-namespace NttBank.Mcp.Application.Customers.GetCustomer;
+namespace NttBankMcp.Application.Customers.GetCustomer;
 
 public class GetCustomerMapper : IRegister
 {

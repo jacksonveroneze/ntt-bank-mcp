@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>NttBank.Mcp.Domain</RootNamespace>
+    <RootNamespace>NttBankMcp.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

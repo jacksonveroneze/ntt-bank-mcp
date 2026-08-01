@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using NttBank.Mcp.Infrastructure.Configurations;
+using NttBankMcp.Infrastructure.Configurations;
 
-namespace NttBank.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class AuthenticationExtensions

@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using NttBank.Mcp.Application.Abstractions.Services;
+using NttBankMcp.Application.Abstractions.Services;
 
-namespace NttBank.Mcp.Infrastructure.Services;
+namespace NttBankMcp.Infrastructure.Services;
 
 [ExcludeFromCodeCoverage]
 internal sealed class DateTimeProvider : IDateTimeProvider

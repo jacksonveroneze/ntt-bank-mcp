@@ -1,6 +1,6 @@
-using NttBank.Mcp.Domain.Results;
+using NttBankMcp.Domain.Results;
 
-namespace NttBank.Mcp.Application.Abstractions.Repositories;
+namespace NttBankMcp.Application.Abstractions.Repositories;
 
 public interface ICustomerRepository
 {

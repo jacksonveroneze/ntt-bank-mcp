@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NttBank.Mcp.Infrastructure.Extensions;
+namespace NttBankMcp.Infrastructure.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class JsonOptionsExtensions

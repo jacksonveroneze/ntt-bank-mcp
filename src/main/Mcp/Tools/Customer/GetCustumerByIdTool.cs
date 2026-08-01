@@ -3,14 +3,14 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
-using NttBank.Mcp.Application.Customers.GetCustomer;
-using NttBank.Mcp.Mcp.Mcp.Extensions;
-using NttBank.Mcp.Mcp.Security;
+using NttBankMcp.Application.Customers.GetCustomer;
+using NttBankMcp.Mcp.Extensions;
+using NttBankMcp.Mcp.Security;
 
-namespace NttBank.Mcp.Mcp.Mcp.Tools;
+namespace NttBankMcp.Mcp.Tools.Customer;
 
 [McpServerToolType]
-public sealed class CustomerTools
+public sealed class GetCustumerByIdTool
 {
     #region constants
 

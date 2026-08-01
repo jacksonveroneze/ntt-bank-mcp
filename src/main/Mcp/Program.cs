@@ -1,4 +1,4 @@
-using NttBank.Mcp.Mcp.Extensions;
+using NttBankMcp.Mcp.Extensions;
 
 var builder = WebApplication
     .CreateSlimBuilder(args);

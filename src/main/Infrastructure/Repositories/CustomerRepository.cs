@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using NttBank.Mcp.Application.Abstractions.Repositories;
-using NttBank.Mcp.Domain.Results;
-using NttBank.Mcp.Infrastructure.HttpClients;
+using NttBankMcp.Application.Abstractions.Repositories;
+using NttBankMcp.Domain.Results;
+using NttBankMcp.Infrastructure.HttpClients;
 using Refit;
 
-namespace NttBank.Mcp.Infrastructure.Repositories;
+namespace NttBankMcp.Infrastructure.Repositories;
 
 [ExcludeFromCodeCoverage]
 public sealed class CustomerRepository(

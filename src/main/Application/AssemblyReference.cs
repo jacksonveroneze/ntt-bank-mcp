@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace NttBank.Mcp.Application;
+namespace NttBankMcp.Application;
 
 public static class AssemblyReference
 {

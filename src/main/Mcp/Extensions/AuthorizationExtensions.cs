@@ -2,10 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using NttBank.Mcp.Infrastructure.Configurations;
-using NttBank.Mcp.Mcp.Security;
+using NttBankMcp.Infrastructure.Configurations;
+using NttBankMcp.Mcp.Security;
 
-namespace NttBank.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class AuthorizationExtensions

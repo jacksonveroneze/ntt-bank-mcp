@@ -1,12 +1,12 @@
 using JacksonVeroneze.NET.Result;
 using MapsterMapper;
 using Microsoft.Extensions.Logging;
-using NttBank.Mcp.Application.Abstractions.Repositories;
-using NttBank.Mcp.Application.Extensions;
-using NttBank.Mcp.Domain.Errors;
-using NttBank.Mcp.Domain.Results;
+using NttBankMcp.Application.Abstractions.Repositories;
+using NttBankMcp.Application.Extensions;
+using NttBankMcp.Domain.Errors;
+using NttBankMcp.Domain.Results;
 
-namespace NttBank.Mcp.Application.Customers.GetCustomer;
+namespace NttBankMcp.Application.Customers.GetCustomer;
 
 public sealed class GetCustomerUseCase(
     ILogger<GetCustomerUseCase> logger,

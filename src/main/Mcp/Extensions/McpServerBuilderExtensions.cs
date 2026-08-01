@@ -1,6 +1,6 @@
-using NttBank.Mcp.Mcp.Filters;
+using NttBankMcp.Mcp.Filters;
 
-namespace NttBank.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Extensions;
 
 internal static class McpServerBuilderExtensions
 {

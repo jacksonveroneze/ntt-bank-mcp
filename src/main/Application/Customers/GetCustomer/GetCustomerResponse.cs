@@ -1,4 +1,4 @@
-namespace NttBank.Mcp.Application.Customers.GetCustomer;
+namespace NttBankMcp.Application.Customers.GetCustomer;
 
 public sealed record GetCustomerResponse
 {

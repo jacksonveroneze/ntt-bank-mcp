@@ -1,9 +1,9 @@
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
-using NttBank.Mcp.Mcp.Extensions;
-using NttBank.Mcp.Mcp.Mcp.Util;
+using NttBankMcp.Mcp.Extensions;
+using NttBankMcp.Mcp.Util;
 
-namespace NttBank.Mcp.Mcp.Filters;
+namespace NttBankMcp.Mcp.Filters;
 
 internal static class ExceptionToolFilter
 {
@@ -27,7 +27,8 @@ internal static class ExceptionToolFilter
 
                 logger?.LogToolUnhandledException(ex, context.Params.Name);
 
-                return McpToolResult.Error(
+                return McpToolResult.Failure(
+                    status: "error",
                     code: "INTERNAL_ERROR",
                     message: "An internal error occurred. Please try again later.");
             }

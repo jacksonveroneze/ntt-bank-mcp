@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
-using NttBank.Mcp.Infrastructure.Configurations;
+using NttBankMcp.Infrastructure.Configurations;
 using Serilog;
 
-namespace NttBank.Mcp.Infrastructure.Extensions;
+namespace NttBankMcp.Infrastructure.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class LoggingExtensions

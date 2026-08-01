@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace NttBank.Mcp.Application.Extensions;
+namespace NttBankMcp.Application.Extensions;
 
 public static partial class LogMessagesExtensions
 {

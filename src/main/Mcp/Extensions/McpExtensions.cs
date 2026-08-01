@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using ModelContextProtocol.Protocol;
-using NttBank.Mcp.Infrastructure.Configurations;
-using NttBank.Mcp.Mcp.Mcp.Prompts;
-using NttBank.Mcp.Mcp.Mcp.Tools;
+using NttBankMcp.Infrastructure.Configurations;
+using NttBankMcp.Mcp.Prompts;
+using NttBankMcp.Mcp.Tools.Customer;
 
-namespace NttBank.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class McpExtensions
@@ -25,7 +25,7 @@ public static class McpExtensions
             .AddAuthorizationFilters()
             .AddExceptionFilter()
             .WithHttpTransport(options => { options.Stateless = true; })
-            .WithTools<CustomerTools>()
+            .WithTools<GetCustumerByIdTool>()
             .WithPrompts<ComplexPromptType>();
 
         return services;

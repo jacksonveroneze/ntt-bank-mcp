@@ -1,9 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using JacksonVeroneze.NET.Result;
 using ModelContextProtocol.Protocol;
+using NttBankMcp.Mcp.Util;
 using Result = JacksonVeroneze.NET.Result.Result;
 
-namespace NttBank.Mcp.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class ResultExtensions
@@ -14,11 +15,11 @@ public static class ResultExtensions
         {
             return result.IsSuccess
                 ? McpToolResult.Success(result.Value)
-                : MapFailure(result);
+                : result.MapFailure();
         }
     }
 
-    private static CallToolResult MapFailure(Result result)
+    private static CallToolResult MapFailure(this Result result)
     {
         return result.Type switch
         {

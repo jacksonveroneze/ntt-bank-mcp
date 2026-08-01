@@ -1,13 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using NttBank.Mcp.Infrastructure.Configurations;
+using NttBankMcp.Infrastructure.Configurations;
 using OpenTelemetry;
 using OpenTelemetry.Instrumentation.AspNetCore;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace NttBank.Mcp.Infrastructure.Extensions;
+namespace NttBankMcp.Infrastructure.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class OpenTelemetryExtensions

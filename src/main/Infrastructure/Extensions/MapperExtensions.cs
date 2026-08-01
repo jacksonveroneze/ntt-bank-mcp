@@ -3,9 +3,9 @@ using System.Reflection;
 using Mapster;
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
-using NttBank.Mcp.Application;
+using NttBankMcp.Application;
 
-namespace NttBank.Mcp.Infrastructure.Extensions;
+namespace NttBankMcp.Infrastructure.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class MapperExtensions

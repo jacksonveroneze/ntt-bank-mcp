@@ -1,7 +1,7 @@
-using NttBank.Mcp.Infrastructure.Configurations;
-using NttBank.Mcp.Infrastructure.Extensions;
+using NttBankMcp.Infrastructure.Configurations;
+using NttBankMcp.Infrastructure.Extensions;
 
-namespace NttBank.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Extensions;
 
 internal static class WebApplicationBuilderExtensions
 {
@@ -22,7 +22,7 @@ internal static class WebApplicationBuilderExtensions
                 .AddMcp(appConfiguration)
                 .AddJsonOptionsSerialize()
                 .AddCorrelation()
-                .AddApplicationServices()
+                .AddCultureConfiguration()
                 .AddHttpClient(appConfiguration)
                 .AddFluentValidation(AssemblyReference.Assembly)
                 .AddMapper(AssemblyReference.Assembly)

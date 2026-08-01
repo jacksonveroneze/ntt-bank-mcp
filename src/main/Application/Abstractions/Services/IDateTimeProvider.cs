@@ -1,4 +1,4 @@
-namespace NttBank.Mcp.Application.Abstractions.Services;
+namespace NttBankMcp.Application.Abstractions.Services;
 
 public interface IDateTimeProvider
 {

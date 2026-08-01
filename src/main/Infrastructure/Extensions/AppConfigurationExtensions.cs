@@ -2,9 +2,9 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using NttBank.Mcp.Infrastructure.Configurations;
+using NttBankMcp.Infrastructure.Configurations;
 
-namespace NttBank.Mcp.Infrastructure.Extensions;
+namespace NttBankMcp.Infrastructure.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class AppConfigurationExtensions

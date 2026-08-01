@@ -1,4 +1,4 @@
-namespace NttBank.Mcp.Mcp.Security;
+namespace NttBankMcp.Mcp.Security;
 
 public static class AuthorizationPolicies
 {

@@ -1,4 +1,4 @@
-namespace NttBank.Mcp.Application.Abstractions.UseCases;
+namespace NttBankMcp.Application.Abstractions.UseCases;
 
 public interface IBaseRequest;
 

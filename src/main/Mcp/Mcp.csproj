@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <RootNamespace>NttBank.Mcp.Mcp</RootNamespace>
+    <RootNamespace>NttBankMcp.Mcp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

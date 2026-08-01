@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using JacksonVeroneze.NET.Result;
 using ModelContextProtocol.Protocol;
 
-namespace NttBank.Mcp.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Util;
 
 public static class McpToolResult
 {

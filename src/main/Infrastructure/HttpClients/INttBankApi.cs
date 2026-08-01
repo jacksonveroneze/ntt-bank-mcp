@@ -1,7 +1,7 @@
-using NttBank.Mcp.Domain.Results;
+using NttBankMcp.Domain.Results;
 using Refit;
 
-namespace NttBank.Mcp.Infrastructure.HttpClients;
+namespace NttBankMcp.Infrastructure.HttpClients;
 
 public interface INttBankApi
 {

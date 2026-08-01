@@ -1,6 +1,6 @@
 using JacksonVeroneze.NET.Result;
 
-namespace NttBank.Mcp.Domain.Errors;
+namespace NttBankMcp.Domain.Errors;
 
 public static class DomainErrors
 {

@@ -1,6 +1,6 @@
-using NttBank.Mcp.Application.Abstractions.UseCases;
+using NttBankMcp.Application.Abstractions.UseCases;
 
-namespace NttBank.Mcp.Application.Customers.GetCustomer;
+namespace NttBankMcp.Application.Customers.GetCustomer;
 
 public sealed record GetCustomerRequest(
     int CustomerId) : IBaseRequest;

@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace NttBank.Mcp.Infrastructure.Configurations;
+namespace NttBankMcp.Infrastructure.Configurations;
 
 [ExcludeFromCodeCoverage]
 public sealed record AuthConfiguration

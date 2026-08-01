@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using NttBank.Mcp.Application.Abstractions.Repositories;
-using NttBank.Mcp.Application.Abstractions.Services;
-using NttBank.Mcp.Application.Customers.GetCustomer;
-using NttBank.Mcp.Infrastructure.Repositories;
-using NttBank.Mcp.Infrastructure.Services;
+using NttBankMcp.Application.Abstractions.Repositories;
+using NttBankMcp.Application.Abstractions.Services;
+using NttBankMcp.Application.Customers.GetCustomer;
+using NttBankMcp.Infrastructure.Repositories;
+using NttBankMcp.Infrastructure.Services;
 
-namespace NttBank.Mcp.Infrastructure.Extensions;
+namespace NttBankMcp.Infrastructure.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class AppServicesExtensions

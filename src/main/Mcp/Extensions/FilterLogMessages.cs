@@ -1,4 +1,4 @@
-namespace NttBank.Mcp.Mcp.Extensions;
+namespace NttBankMcp.Mcp.Extensions;
 
 internal static partial class FilterLogMessages
 {
