@@ -1,9 +1,7 @@
 ---
 name: new-usecase
 description: Use quando o usuário pedir para criar/adicionar um novo caso de uso
-   (use case) neste repositório. Faz o scaffold apenas da camada Application,
-   seguindo o padrão dos casos de uso existentes, e sinaliza (não cria) qualquer
-   artefato necessário em Domain ou Infrastructure.
+   (use case) neste repositório.
 ---
 
 # new-usecase
@@ -15,6 +13,11 @@ esta skill assume as convenções deles e não as repete.
 
 **Escopo:** cria só artefatos de `Application`. Não cria Domain, Infrastructure,
 endpoints nem MCP tool — se algum for necessário, **alerta e para**.
+
+**Fonte da verdade:** os `CLAUDE.md` mandam, não o código existente. Onde o
+exemplo-âncora (`GetCustomer/`) divergir de um `CLAUDE.md`, siga o `CLAUDE.md` e
+**liste a divergência como alerta** (ver §13 da raiz) — é referência de
+estrutura, não de conformidade.
 
 ## 0. Requisitos (pergunte o que faltar, não assuma)
 
@@ -37,7 +40,8 @@ repositories ou http clients. Se algo for necessário, **gere um alerta e pare**
 ## 2. Application — escopo principal
 
 Crie `Application/<Feature>/<UseCase>/` seguindo o padrão e as regras do
-`CLAUDE.md` de Application (o *como* está lá; use `GetCustomer/` como referência).
+`CLAUDE.md` de Application (o *como* está lá; use `GetCustomer/` como referência
+de estrutura — não de conformidade, conforme acima).
 
 Artefatos a produzir:
 
@@ -57,6 +61,7 @@ force conversão para `int`.
 
 1. Valide os arquivos contra **todas** as diretrizes do `CLAUDE.md` de Application
    — esta é a verificação canônica (o `CLAUDE.md` é a fonte da verdade).
-2. Confirme que nada foi criado em Domain/Infrastructure, que os alertas devidos
-   foram emitidos e que as precondições (repositório, `DomainError`) estavam satisfeitas.
+2. Confirme que nada foi criado em Domain/Infrastructure, que as precondições
+   (repositório, `DomainError`) estavam satisfeitas e que **toda divergência
+   código↔`CLAUDE.md` foi listada como alerta** (implementação seguiu o MD).
 3. Resuma os arquivos criados/alterados e os alertas emitidos.

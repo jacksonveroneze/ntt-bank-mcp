@@ -42,7 +42,7 @@ Não introduza bibliotecas, frameworks, padrões arquiteturais ou grandes refato
 - Evite abstrações prematuras.
 - Evite overengineering.
 - Preserve comportamento existente, salvo pedido contrário.
-- Siga os padrões já existentes no projeto.
+- Siga os padrões já existentes no projeto — **salvo quando divergirem de um `CLAUDE.md`**; nesse caso o `CLAUDE.md` prevalece (ver §13).
 - Não misture feature, refatoração e formatação sem motivo.
 
 Quando houver dúvida entre soluções válidas, escolha a mais simples de entender, testar e manter.
@@ -209,6 +209,10 @@ facilita testes/manutenção e compensa a complexidade.
 Antes de alterar, leia o código existente, o `CLAUDE.md` da raiz e o da camada/projeto alvo,
 entenda os padrões atuais, identifique testes relacionados e faça plano breve para mudanças não triviais.
 
+Quando o código existente divergir de um `CLAUDE.md`, o plano **deve listar cada divergência
+como um alerta** antes de gerar código, no formato: "o arquivo X faz A, mas o `CLAUDE.md` pede B;
+sigo B (ver §13)". Não gere código antes de enumerar essas divergências.
+
 Durante a alteração, mantenha o escopo, reutilize padrões existentes, evite mudanças destrutivas,
 evite novas dependências sem justificativa e atualize testes quando necessário.
 
@@ -227,13 +231,20 @@ Quando houver divergência entre fontes, a ordem de autoridade é:
 3. Código existente — referência para detalhes que os `CLAUDE.md` **não**
    especificam. **Não** é autoridade quando diverge deles.
 
+Ferramentas obrigatórias (`.editorconfig`, analyzers, `BannedSymbols.txt`) são
+restrição rígida — o build tem de passar. Um analyzer **desligado** (ex.
+`CA1852 = none`) **não** libera ignorar o `CLAUDE.md`: significa apenas que a
+regra não é enforced pela ferramenta; a diretriz do MD continua valendo.
+
 Regra prática quando o código existente contradiz um `CLAUDE.md`:
 
+- **Liste a divergência como alerta** — sempre. Toda divergência código↔MD
+  detectada vira um alerta explícito para o usuário; nenhuma é resolvida em
+  silêncio. Formato: "o arquivo X faz A, mas o `CLAUDE.md` pede B; sigo B."
 - Siga o `CLAUDE.md` no código **novo**. O desvio no arquivo existente é débito,
   não padrão a replicar (ex.: um mapper existente `public class` sem `sealed`
   não autoriza novos mappers sem `sealed`).
-- **Sinalize** a divergência: "o arquivo X faz A, mas o `CLAUDE.md` pede B; sigo
-  B." Não siga o código em silêncio nem "corrija" o código em silêncio.
+- Não siga o código em silêncio nem "corrija" o código em silêncio.
 - **Não** retrofite o arquivo divergente no mesmo passo — isso mistura escopo
   (§11/§12). Só corrija se pedido explicitamente; caso contrário, registre como
   pendência.

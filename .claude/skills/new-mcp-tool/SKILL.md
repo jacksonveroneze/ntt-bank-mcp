@@ -1,9 +1,7 @@
 ---
 name: new-mcp-tool
 description: Use quando o usuário pedir para criar/adicionar uma nova MCP tool
-  neste repositório. Faz o scaffold apenas da camada Mcp/Api (tool + validator +
-  registro + policy), seguindo o padrão das tools existentes, e assume que o
-  use case correspondente já existe em Application.
+  neste repositório.
 ---
 
 # new-mcp-tool
@@ -17,6 +15,11 @@ não as repete.
 **Escopo:** cria só artefatos da camada Mcp/Api (tool, validator, registro,
 policy/scope). Não cria use cases, Domain nem Infrastructure — se algum for
 necessário, **alerta e para**.
+
+**Fonte da verdade:** os `CLAUDE.md` mandam, não o código existente. Onde o
+exemplo-âncora (`GetCustumerByIdTool.cs`) divergir de um `CLAUDE.md`, siga o
+`CLAUDE.md` e **liste a divergência como alerta** (ver §13 da raiz) — é
+referência de estrutura, não de conformidade.
 
 ## 0. Requisitos (pergunte o que faltar, não assuma)
 
@@ -33,8 +36,8 @@ pare** (rode a skill `new-usecase` antes) — a tool é fina, só orquestra o us
 ## 1. Tool — escopo principal (`Tools/<Feature>/`)
 
 Crie seguindo o passo a passo do `CLAUDE.md` de Mcp (o *como* está lá; use
-`GetCustumerByIdTool.cs` como referência — **não repita o typo "Custumer"** no
-nome do arquivo/classe).
+`GetCustumerByIdTool.cs` como referência de estrutura — **não repita o typo
+"Custumer"** no nome do arquivo/classe).
 
 Artefatos a produzir:
 
@@ -69,5 +72,6 @@ Infrastructure, **alerte e pare**.
    `[Authorize]` presente, validação antes do use case, conversão via envelope
    padrão, tool registrada em `McpExtensions.cs`, descrição em inglês.
 2. Confirme que nada foi criado fora de Mcp/Api, que a precondição (use case)
-   estava satisfeita e que os alertas devidos foram emitidos.
+   estava satisfeita e que **toda divergência código↔`CLAUDE.md` foi listada
+   como alerta** (implementação seguiu o MD).
 3. Resuma os arquivos criados/alterados e os alertas emitidos.
