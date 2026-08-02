@@ -28,9 +28,6 @@ public sealed class GetCustomerAccountsTool(
         when you need the accounts, balances or account status of a known customer.
         """;
 
-    private const string GetCustomerIdParamDesc =
-        "The unique numeric identifier of the customer (must be greater than zero).";
-
     #endregion
 
     [McpServerTool(
@@ -39,7 +36,7 @@ public sealed class GetCustomerAccountsTool(
     [Description(GetCustomerAccountsToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerAccountsRead)]
     public async Task<CallToolResult> GetAccountsAsync(
-        [Description(GetCustomerIdParamDesc)] int customerId,
+        [Description(CustomerToolConstants.CustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken)
     {
         var request = new GetCustomerAccountsRequest(customerId);

@@ -26,9 +26,6 @@ public sealed class GetCustumerByIdTool(
         exists with the given ID. Use this tool when you need to look up a specific customer.
         """;
 
-    private const string GetCustomerIdParamDesc =
-        "The unique numeric identifier of the customer (must be greater than zero).";
-
     #endregion
 
     [McpServerTool(
@@ -37,7 +34,7 @@ public sealed class GetCustumerByIdTool(
     [Description(GetCustomerToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerRead)]
     public async Task<CallToolResult> GetByIdAsync(
-        [Description(GetCustomerIdParamDesc)] int customerId,
+        [Description(CustomerToolConstants.CustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken)
     {
         var request = new GetCustomerRequest(customerId);
