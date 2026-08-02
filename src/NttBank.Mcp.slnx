@@ -14,6 +14,9 @@
         <File Path="..\CLAUDE.md" />
     </Folder>
     <Folder Name="/SolutionItems/claude/skills/" />
+    <Folder Name="/SolutionItems/claude/skills/commit/">
+        <File Path="..\.claude\skills\commit\SKILL.md" />
+    </Folder>
     <Folder Name="/SolutionItems/claude/skills/new-mcp-tool/">
         <File Path="..\.claude\skills\new-mcp-tool\SKILL.md" />
     </Folder>
