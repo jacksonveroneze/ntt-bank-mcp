@@ -1,6 +1,9 @@
 using NttBankMcp.Application.Abstractions.UseCases;
+using NttBankMcp.Domain.Enums;
 
 namespace NttBankMcp.Application.Customers.GetCustomerAccounts;
 
 public sealed record GetCustomerAccountsRequest(
-    int CustomerId) : IBaseRequest;
+    int CustomerId,
+    AccountType? AccountType,
+    AccountStatus? Status) : IBaseRequest;

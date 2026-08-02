@@ -19,7 +19,10 @@ public sealed class GetCustomerAccountsUseCase(
         ArgumentNullException.ThrowIfNull(request);
 
         var accounts = await repository.GetAccountsAsync(
-            request.CustomerId, cancellationToken);
+            request.CustomerId,
+            request.AccountType,
+            request.Status,
+            cancellationToken);
 
         if (accounts.Count is 0)
         {

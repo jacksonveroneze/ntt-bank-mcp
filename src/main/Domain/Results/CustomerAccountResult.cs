@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using NttBankMcp.Domain.Enums;
 
 namespace NttBankMcp.Domain.Results;
 
@@ -11,7 +12,7 @@ public sealed record CustomerAccountResult
     public int BranchId { get; init; }
 
     [JsonPropertyName("accountType")]
-    public string? AccountType { get; init; }
+    public AccountType? AccountType { get; init; }
 
     [JsonPropertyName("balance")]
     public decimal? Balance { get; init; }
@@ -20,5 +21,5 @@ public sealed record CustomerAccountResult
     public DateOnly? OpenDate { get; init; }
 
     [JsonPropertyName("status")]
-    public string? Status { get; init; }
+    public AccountStatus? Status { get; init; }
 }

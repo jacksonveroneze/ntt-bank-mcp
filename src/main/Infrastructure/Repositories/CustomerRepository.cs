@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using NttBankMcp.Application.Abstractions.Repositories;
+using NttBankMcp.Domain.Enums;
 using NttBankMcp.Domain.Results;
 using NttBankMcp.Infrastructure.HttpClients;
 using Refit;
@@ -30,10 +31,12 @@ public sealed class CustomerRepository(
 
     public async Task<IReadOnlyCollection<CustomerAccountResult>> GetAccountsAsync(
         int customerId,
+        AccountType? accountType,
+        AccountStatus? status,
         CancellationToken cancellationToken)
     {
         var result = await api.GetCustomerAccountsAsync(
-            customerId, cancellationToken);
+            customerId, accountType, status, cancellationToken);
 
         return result;
     }
