@@ -37,7 +37,7 @@ public static class OpenTelemetryExtensions
         {
             r.AddService(
                 appConfiguration.Application!.Name!,
-                serviceVersion: appConfiguration.Application!.Version!.ToString(),
+                serviceVersion: appConfiguration.Application.Version!.ToString(),
                 serviceInstanceId: Environment.MachineName);
         }
     }

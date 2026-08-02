@@ -1,4 +1,4 @@
-namespace NttBankMcp.Mcp.Security;
+namespace NttBankMcp.Api.Security;
 
 public static class AuthorizationScopes
 {

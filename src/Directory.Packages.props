@@ -10,7 +10,7 @@
         <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="18.7.23"/>
         <PackageVersion Include="Meziantou.Analyzer" Version="3.0.138"/>
     </ItemGroup>
-    <ItemGroup Label="Mcp">
+    <ItemGroup Label="Api">
         <PackageVersion Include="ModelContextProtocol.AspNetCore" Version="2.0.0"/>
     </ItemGroup>
     <ItemGroup Label="Application">

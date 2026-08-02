@@ -1,95 +1,218 @@
-# ntt-bank-mcp
+# CLAUDE.md
 
-Servidor MCP (Model Context Protocol) bancário em .NET 10 / C# 14, ASP.NET
-Core, construído sobre o SDK oficial `ModelContextProtocol.AspNetCore`. Expõe
-tools que um modelo (Claude) pode invocar para consultar dados bancários.
+Instruções globais para desenvolvimento neste repositório .NET/C#.
 
-Não há README no repositório — este arquivo (e os `CLAUDE.md` de cada camada)
-cobrem o papel de onboarding.
+Valem para todo o repositório. Antes de alterar uma camada/projeto, leia também o `CLAUDE.md` local do diretório correspondente.
 
-## Arquitetura
+---
 
-Clean Architecture com 4 projetos e direção de dependência única:
+## 1. Papel do agente
 
+Atue como desenvolvedor sênior .NET e arquiteto de software.
+
+Priorize código simples, legível, seguro, testável, observável e fácil de manter.
+
+Faça a menor mudança segura que resolva o problema.
+Não introduza bibliotecas, frameworks, padrões arquiteturais ou grandes refatorações sem necessidade clara.
+
+---
+
+## 2. Stack e padrões do repositório
+
+- .NET 10 e C# 14.
+- Nullable reference types e implicit usings habilitados.
+- Warnings, analyzers e code style tratados como erro.
+- Central Package Management em `Directory.Packages.props`.
+- Configurações globais em `Directory.Build.props`.
+- Estilo em `.editorconfig`.
+- APIs banidas em `BannedSymbols.txt`.
+- Preferir `System.Text.Json`; não usar `Newtonsoft.Json`.
+- Não usar `DateTime.Now` nem `DateTimeOffset.Now`; preferir UTC ou `IDateTimeProvider`.
+- Não adicionar versões de pacotes diretamente nos `.csproj`.
+
+---
+
+## 3. Princípios gerais
+
+- Prefira clareza em vez de esperteza.
+- Prefira código explícito em vez de mágica.
+- Mantenha métodos pequenos e focados.
+- Mantenha classes coesas.
+- Evite duplicação de regras de negócio.
+- Evite abstrações prematuras.
+- Evite overengineering.
+- Preserve comportamento existente, salvo pedido contrário.
+- Siga os padrões já existentes no projeto.
+- Não misture feature, refatoração e formatação sem motivo.
+
+Quando houver dúvida entre soluções válidas, escolha a mais simples de entender, testar e manter.
+
+---
+
+## 4. Idioma e nomenclatura
+
+- Todo código deve usar nomes em inglês.
+- Classes, métodos, propriedades, records, interfaces, enums, variáveis, namespaces, arquivos e pastas técnicas devem ser nomeados em inglês.
+- Documentação, comentários explicativos e arquivos de especificações podem ser escritos em português.
+- Não misturar nomes em português no código C#.
+- Exemplos corretos: `Order`, `OrderMapping`, `GetOrdersByAssetUseCase`, `CheckOrdersByAssetTool`.
+- Exemplos incorretos: `Ordem`, `MapeamentoOrdem`, `ConsultarOrdemPorAtivoUseCase`.
+
+---
+
+## 5. Arquitetura
+
+Use Clean Architecture com separação clara de responsabilidades.
+
+Dependências esperadas:
+
+```text
+Domain <- Application
+Application <- Infrastructure
+Domain      <- Infrastructure
+Application <- Api
+Infrastructure <- Api apenas para composition root/DI/configuração
 ```
-Mcp → Infrastructure → Application → Domain
+
+Regras:
+
+- Domain não depende de ASP.NET Core, EF Core, banco, cache, mensageria, REST, GraphQL, gRPC ou MCP.
+- Application não depende de transporte, controllers, endpoints, gRPC services, GraphQL resolvers ou MCP tools.
+- Infrastructure implementa detalhes técnicos definidos por abstrações de Application/Domain.
+- Api adapta protocolos de entrada/saída e configura composição.
+- Regras de negócio ficam em Domain ou Application.
+- Endpoints, resolvers, gRPC services e MCP tools devem ser finos. Somente receber request, chamar useCase e devoler response.
+- Frameworks e tecnologias externas ficam nas bordas.
+
+---
+
+## 6. Organização de projetos
+
+Estrutura padrão:
+
+```text
+src/main/Api/
+src/main/Application/
+src/main/Domain/
+src/main/Infrastructure/
+tests/
 ```
 
-- **Domain** (`src/main/Domain`) — núcleo do domínio, zero dependências de
-  outras camadas. Ver `src/main/Domain/CLAUDE.md`.
-- **Application** (`src/main/Application`) — casos de uso, orquestra Domain +
-  abstrações de repositório. Ver `src/main/Application/CLAUDE.md`.
-- **Infrastructure** (`src/main/Infrastructure`) — implementações concretas
-  (HTTP clients, DI, logging, telemetria, config). Ver
-  `src/main/Infrastructure/CLAUDE.md`.
-- **Mcp** (`src/main/Mcp`) — camada de apresentação, hospeda o servidor MCP e
-  expõe as tools. Ver `src/main/Mcp/CLAUDE.md` (leitura obrigatória antes de
-  criar uma nova tool).
+Responsabilidades:
 
-Solução: `src/NttBank.Mcp.slnx` (formato `.slnx`, não `.sln`). Todos os
-projetos miram `net10.0` com `Nullable` habilitado (`src/Directory.Build.props`).
+- Api: Minimal APIs, rotas, versionamento, OpenAPI/Scalar, auth HTTP, ProblemDetails e respostas.
+- Application: use cases, inputs/outputs, validators, abstrações, parâmetros e orquestração.
+- Domain: agregados, entidades, value objects, factories, policies, repositórios e invariantes.
+- Infrastructure: EF Core, DbContexts, migrations, repositories, cache, Redis, observabilidade, auth técnica, DI e providers.
+- CrossCutting: objetos, validadores, erros e utilitários compartilhados e independentes.
 
-## Convenções gerais de código
+Não crie projetos, pastas ou camadas sem responsabilidade clara.
 
-- Namespaces file-scoped.
-- Primary constructors para injeção de dependência (ex.
-  `GetCustumerByIdTool(IValidator<GetCustomerRequest> validator, IGetCustomerUseCase useCase)`).
+---
+
+## 7. Padrões C#
+
+- Use file-scoped namespaces e braces em blocos de controle.
+- Use primary constructors para injeção de dependência (ex. IGetCustomerUseCase useCase).
+- Use extension member blocks.
+- Respeite limite de linha de 100 caracteres.
+- Prefira var em vez de tipo explícito, conforme `.editorconfig`.
+- Use nomes claros e orientados à intenção.
+- Use guard clauses para entradas inválidas.
+- Prefira imutabilidade quando fizer sentido.
+- Use `record` para dados imutáveis simples.
+- Use `class` para entidades e serviços com comportamento ou identidade.
 - Classes/records `sealed` por padrão.
-- Interfaces prefixadas com `I`, PascalCase.
-- Guard clauses com `ArgumentNullException.ThrowIfNull`.
-- Uso misto de C# 14 `extension` member blocks (ex.
-  `Mcp/Extensions/McpServerBuilderExtensions.cs`,
-  `Infrastructure/Extensions/OpenTelemetryExtensions.cs`) e extension methods
-  clássicos — siga o estilo já usado no arquivo que estiver editando.
-- `var` só para tipos embutidos/óbvios (regra do `.editorconfig`).
+- Use o modificador de acesso mais restritivo possível.
+- Evite estado global mutável, service locator, métodos longos e construtores com dependências demais.
+- Não retorne `null` para representar erro de negócio.
+- Não exponha entidades EF diretamente em contratos de API.
 
-## Build, analisadores e testes
+Nomenclatura:
 
-- `TreatWarningsAsErrors=true`, `AnalysisMode=All`, `AnalysisLevel=latest`,
-  `EnforceCodeStyleInBuild=true` (`src/Directory.Build.props`).
-- Analisadores ativos: SonarAnalyzer.CSharp, Meziantou.Analyzer,
-  Microsoft.CodeAnalysis.BannedApiAnalyzers,
-  Microsoft.VisualStudio.Threading.Analyzers.
-- `src/BannedSymbols.txt` proíbe `DateTime.Now` / `DateTimeOffset.Now` (usar
-  variantes UTC) e `Newtonsoft.Json` (usar `System.Text.Json`).
-- `.editorconfig` (`src/.editorconfig`): 4 espaços, LF, 100 colunas máx.
-- Gerenciamento central de versões de pacote:
-  `src/Directory.Packages.props` (`ManagePackageVersionsCentrally=true`).
+- Interfaces usam prefixo `I`.
+- Métodos assíncronos terminam com `Async`.
+- `CancellationToken` deve se chamar `cancellationToken`.
+- Não usar default no tipo CancellationToken.
+- Testes devem descrever o comportamento esperado.
 
-Comandos (executar a partir de `src/`):
+---
 
-```bash
-dotnet build NttBank.Mcp.slnx
-dotnet test NttBank.Mcp.slnx
-```
+## 8. Async/Await
 
-Não existe projeto de testes registrado na solução ainda (`src/tests/` e
-`tests/` só têm `.gitkeep`), embora `Directory.Packages.props` já declare o
-stack pretendido: xunit, Moq, FluentAssertions, coverlet.
+- Todo método assíncrono deve terminar com `Async`.
+- Propague `CancellationToken` quando aplicável.
+- Não use `.Result`, `.Wait()` ou `.GetAwaiter().GetResult()`.
+- Não use `Task.Run` para esconder I/O bloqueante em server-side.
+- Não use `async void`, exceto em event handlers.
+- Não ignore tasks retornadas.
+- Não engula cancelamento.
+- Passe `CancellationToken` para EF Core, HTTP calls, Redis, cache, mensageria e operações longas.
+- Use `Task` e `Task<T>` por padrão.
+- Use `ValueTask` somente com motivo real de performance e entendimento das restrições.
 
-## Débito técnico conhecido (documentado, não corrigido)
+Nunca faça sync-over-async em ASP.NET Core para não causar thread pool starvation.
 
-- O build atual falha com 3 erros Sonar `S8969` (remover operador
-  null-forgiving) em `Infrastructure/Extensions/LoggingExtensions.cs:25`,
-  `HttpClientExtensions.cs:31` e `OpenTelemetryExtensions.cs:40`.
-- Mensagens de erro padrão em pt-BR estão hardcoded em
-  `Mcp/Util/McpToolResult.cs` e `Mcp/Extensions/ResultExtensions.cs`,
-  misturadas com tool descriptions e código em inglês no restante do projeto.
-  Padronizar para um único idioma é recomendado numa tarefa futura dedicada.
+---
 
-## Segurança MCP (regras globais — valem para toda tool nova)
+## 9. Erros e validações
 
-- **Least privilege**: toda tool nova declara sua própria
-  `[Authorize(Policy = ...)]`. Nunca reaproveitar a policy de outra feature
-  sem revisar se o escopo realmente se aplica.
-- **Input do modelo não é confiável**: todo argumento recebido via MCP deve
-  ser validado no servidor (FluentValidation) antes de qualquer uso — a
-  descrição do parâmetro (`[Description]`) não é uma garantia de formato ou
-  intenção, é só um hint para o modelo.
-- **Nunca vazar detalhes internos** (stack trace, connection string, mensagens
-  de exceção cruas) em `CallToolResult` de erro. Usar sempre o envelope
-  padronizado (`McpToolResult` / `ResultExtensions`).
-- **Descrições de tool/parâmetro são superfície de decisão do modelo**: é a
-  partir delas que o modelo decide quando e como invocar a tool. Uma
-  descrição imprecisa ou ambígua é um risco de uso indevido, não só um
-  problema estético.
+- Use Result Pattern para erros esperados de negócio/aplicação.
+- Use exceções para falhas inesperadas, não para fluxo normal.
+- Use FluentValidation para validação de input quando aplicável.
+- Mantenha invariantes de negócio no Domain.
+- Mapeie Result para HTTP/gRPC/MCP apenas na Api.
+- Não exponha stack trace para clientes.
+- Não engula exceções.
+- Use constraints de banco para integridade, mas não dependa apenas delas para regras de negócio.
+
+Erros esperados incluem validação, not found, conflito, regra violada,
+estado inválido e operação não autorizada. Falhas inesperadas incluem banco indisponível,
+timeout, erro de rede, bug e configuração inválida.
+
+---
+
+## 10. Logging, observabilidade e segurança
+
+- Use logging estruturado com Serilog quando disponível.
+- Inclua correlation id, trace id ou request id quando disponíveis.
+- Use logs para diagnóstico, métricas para comportamento mensurável e traces para fluxo distribuído.
+- Use health checks para dependências.
+- Use OpenTelemetry/Prometheus quando disponível no projeto.
+- Nunca commite secrets, `.env` com credenciais reais, connection strings reais, tokens ou certificados.
+- Nunca hardcode credenciais.
+- Valide toda entrada externa.
+- Aplique autenticação/autorização de forma explícita.
+- Prefira policy-based authorization em ASP.NET Core.
+- Não confie em identificadores do cliente para autorização.
+- Evite overposting, mass assignment e vazamento de detalhes internos.
+- Não logue senhas, tokens, secrets, CPF, dados sensíveis ou payloads completos sensíveis.
+
+Em decisões sensíveis, escolha o padrão mais seguro.
+
+---
+
+## 11. Anti-overengineering
+
+Não adicione sem necessidade clara: generic repository, unit of work sobre EF Core sem valor claro,
+mediator pipeline, CQRS completo, domain events, microservices, base classes genéricas,
+factories desnecessárias, reflection desnecessária, abstrações com uma única implementação,
+extension methods sem ganho claro ou frameworks internos.
+
+Antes de criar uma abstração, valide se ela reduz acoplamento na camada correta,
+facilita testes/manutenção e compensa a complexidade.
+
+---
+
+## 12. Fluxo de trabalho do agente
+
+Antes de alterar, leia o código existente, o `CLAUDE.md` da raiz e o da camada/projeto alvo,
+entenda os padrões atuais, identifique testes relacionados e faça plano breve para mudanças não triviais.
+
+Durante a alteração, mantenha o escopo, reutilize padrões existentes, evite mudanças destrutivas,
+evite novas dependências sem justificativa e atualize testes quando necessário.
+
+Depois de alterar, rode build, testes e format quando disponíveis.
+Informe o que mudou, comandos executados, riscos, limitações e pendências.
+
+Não execute ações destrutivas sem autorização explícita.

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using NttBankMcp.Infrastructure.Configurations;
 
-namespace NttBankMcp.Mcp.Extensions;
+namespace NttBankMcp.Api.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class AuthenticationExtensions
@@ -32,7 +32,7 @@ public static class AuthenticationExtensions
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = appConfiguration!.AuthTokenAuthentication!.Issuer,
+                        ValidIssuer = appConfiguration.AuthTokenAuthentication.Issuer,
                         ValidAudience = appConfiguration.AuthTokenAuthentication.Audience,
                         ClockSkew = TimeSpan.Zero,
                     };

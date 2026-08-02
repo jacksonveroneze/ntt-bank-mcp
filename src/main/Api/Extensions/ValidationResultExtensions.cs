@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 using ModelContextProtocol.Protocol;
-using NttBankMcp.Mcp.Util;
+using NttBankMcp.Api.Util;
 
-namespace NttBankMcp.Mcp.Extensions;
+namespace NttBankMcp.Api.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class ValidationResultExtensions

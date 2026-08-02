@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using ModelContextProtocol.Protocol;
+using NttBankMcp.Api.Prompts;
+using NttBankMcp.Api.Tools.Customer;
 using NttBankMcp.Infrastructure.Configurations;
-using NttBankMcp.Mcp.Prompts;
-using NttBankMcp.Mcp.Tools.Customer;
 
-namespace NttBankMcp.Mcp.Extensions;
+namespace NttBankMcp.Api.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class McpExtensions
@@ -18,8 +18,8 @@ public static class McpExtensions
                 configureOption.ServerInfo = new Implementation
                 {
                     Name = appConfiguration.Application!.Name!,
-                    Version = appConfiguration.Application!.Version!.ToString(),
-                    Description = appConfiguration.Application!.Description,
+                    Version = appConfiguration.Application.Version!.ToString(),
+                    Description = appConfiguration.Application.Description,
                 };
             })
             .AddAuthorizationFilters()

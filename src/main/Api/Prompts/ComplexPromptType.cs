@@ -2,7 +2,7 @@ using System.ComponentModel;
 using Microsoft.Extensions.AI;
 using ModelContextProtocol.Server;
 
-namespace NttBankMcp.Mcp.Prompts;
+namespace NttBankMcp.Api.Prompts;
 
 [McpServerPromptType]
 public class ComplexPromptType

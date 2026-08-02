@@ -1,6 +1,6 @@
 using CorrelationId;
 
-namespace NttBankMcp.Mcp.Extensions;
+namespace NttBankMcp.Api.Extensions;
 
 internal static class WebApplicationExtensions
 {

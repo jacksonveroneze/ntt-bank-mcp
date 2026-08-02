@@ -22,7 +22,7 @@ public static class LoggingExtensions
                 .Enrich.WithProperty("ApplicationName",
                     appConfiguration.Application!.Name!)
                 .Enrich.WithProperty("ApplicationVersion",
-                    appConfiguration.Application!.Version!.ToString());
+                    appConfiguration.Application.Version!.ToString());
         });
 
         return builder;

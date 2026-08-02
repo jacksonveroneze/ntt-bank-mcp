@@ -1,9 +1,9 @@
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
-using NttBankMcp.Mcp.Extensions;
-using NttBankMcp.Mcp.Util;
+using NttBankMcp.Api.Extensions;
+using NttBankMcp.Api.Util;
 
-namespace NttBankMcp.Mcp.Filters;
+namespace NttBankMcp.Api.Filters;
 
 internal static class ExceptionToolFilter
 {

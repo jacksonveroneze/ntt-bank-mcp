@@ -39,6 +39,6 @@
         <Project Path="main/Application/Application.csproj" />
         <Project Path="main/Domain/Domain.csproj" />
         <Project Path="main/Infrastructure/Infrastructure.csproj" />
-        <Project Path="main\Mcp\Mcp.csproj" />
+        <Project Path="main\Api\Api.csproj" />
     </Folder>
 </Solution>

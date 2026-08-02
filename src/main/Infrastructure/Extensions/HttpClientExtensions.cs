@@ -28,7 +28,7 @@ public static class HttpClientExtensions
             .AddStandardResilienceHandler();
 
         services.AddClientCredentialsTokenManagement()
-            .AddClient(appConfiguration.HttpClientNttBank!.Name!, client =>
+            .AddClient(appConfiguration.HttpClientNttBank.Name!, client =>
             {
                 var config = appConfiguration.AuthTokenGenerator!;
                 

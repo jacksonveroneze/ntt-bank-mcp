@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <RootNamespace>NttBankMcp.Mcp</RootNamespace>
+    <RootNamespace>NttBankMcp.Api</RootNamespace>
     <UserSecretsId>44b7cbea-12d5-42dc-b4ec-15fcb7faa430</UserSecretsId>
   </PropertyGroup>
 

@@ -11,13 +11,20 @@ específico desta camada.
 Cada caso de uso vive em `Application/<Feature>/<UseCase>/` com estes
 arquivos (ver `Customers/GetCustomer/` como referência):
 
-- `<UseCase>Request.cs` — `record` que implementa `IBaseRequest`.
-- `<UseCase>Response.cs` — `record` com dados primitivos/flat.
-- `<UseCase>Mapper.cs` — `IRegister` do Mapster mapeando o Result model do
-  Domain para o Response.
-- `I<UseCase>UseCase.cs` — estende
-  `Application/Abstractions/UseCases/IUseCase<TRequest, TResponse>`.
-- `<UseCase>UseCase.cs` — implementação.
+- `<UseCase>Request.cs` — `public sealed record <UseCase>Request(...) : IBaseRequest;`
+- `<UseCase>Response.cs` — `public sealed record <UseCase>Response(...);` com campos flat/primitivos.
+- `I<UseCase>UseCase.cs` — `public interface I<UseCase>UseCase : IUseCase<<UseCase>Request, <UseCase>Response>;`
+- `<UseCase>UseCase.cs` — implementação:
+    - Primary constructor injetando `I<Aggregate>Repository` (ou o repositório existente).
+    - Chama o repositório, mapeia o `Result<DomainModel>` para `Result<Response>` (via Mapster, `IRegister`).
+    - Logging via `[LoggerMessage]` — adicionar entradas em
+      `Application/Extensions/LogMessagesExtensions.cs`. Se o identificador
+      de negócio não for `int` (ex. CPF em `string`), adicione um **overload
+      novo** de `LogNotFound` (ou uma mensagem própria) em vez de forçar
+      conversão para o overload existente — o overload atual só aceita
+      `string className, string methodName, int identifier`.
+    - Retorno sempre `Result<T>`, nunca lança exception para erro de negócio esperado.
+- `<UseCase>Mapper.cs` — `IRegister` do Mapster mapeando Domain Result model → Response.
 
 ## Regras
 

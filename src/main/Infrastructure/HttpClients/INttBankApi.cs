@@ -9,4 +9,9 @@ public interface INttBankApi
     Task<CustomerResult> GetCustomerByIdAsync(
         int id,
         CancellationToken cancellationToken);
+    
+    [Get("/customers/{id}/accounts")]
+    Task<IReadOnlyCollection<CustomerAccountResult>> GetCustomerAccountsAsync(
+        int id,
+        CancellationToken cancellationToken);
 }

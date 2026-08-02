@@ -9,22 +9,32 @@ namespace NttBankMcp.Infrastructure.Repositories;
 
 [ExcludeFromCodeCoverage]
 public sealed class CustomerRepository(
-    INttBankApi api): ICustomerRepository
+    INttBankApi api) : ICustomerRepository
 {
     public async Task<CustomerResult?> GetByIdAsync(
-        int id, CancellationToken cancellationToken)
+        int customerId, CancellationToken cancellationToken)
     {
         try
         {
-            var customer = await api.GetCustomerByIdAsync(
-                id, cancellationToken);
+            var result = await api.GetCustomerByIdAsync(
+                customerId, cancellationToken);
 
-            return customer;
+            return result;
         }
-        catch (ApiException ex) 
-            when(ex.StatusCode is HttpStatusCode.NotFound)
+        catch (ApiException ex)
+            when (ex.StatusCode is HttpStatusCode.NotFound)
         {
             return null;
         }
+    }
+
+    public async Task<IReadOnlyCollection<CustomerAccountResult>?> GetAccountsAsync(
+        int customerId,
+        CancellationToken cancellationToken)
+    {
+        var result = await api.GetCustomerAccountsAsync(
+            customerId, cancellationToken);
+
+        return result;
     }
 }

@@ -3,11 +3,11 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
+using NttBankMcp.Api.Extensions;
+using NttBankMcp.Api.Security;
 using NttBankMcp.Application.Customers.GetCustomer;
-using NttBankMcp.Mcp.Extensions;
-using NttBankMcp.Mcp.Security;
 
-namespace NttBankMcp.Mcp.Tools.Customer;
+namespace NttBankMcp.Api.Tools.Customer;
 
 [McpServerToolType]
 public sealed class GetCustumerByIdTool(

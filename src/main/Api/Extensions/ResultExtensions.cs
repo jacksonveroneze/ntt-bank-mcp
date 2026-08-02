@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using JacksonVeroneze.NET.Result;
 using ModelContextProtocol.Protocol;
-using NttBankMcp.Mcp.Util;
+using NttBankMcp.Api.Util;
 using Result = JacksonVeroneze.NET.Result.Result;
 
-namespace NttBankMcp.Mcp.Extensions;
+namespace NttBankMcp.Api.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class ResultExtensions

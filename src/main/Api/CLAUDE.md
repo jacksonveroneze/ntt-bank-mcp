@@ -71,11 +71,3 @@ typo em tools novas).
   injection indireta). Validação server-side é a única defesa real —
   descrições e tipos no schema da tool são hints para o modelo, não
   controles de segurança.
-
-## Débito técnico local (documentado, não corrigido)
-
-`Util/McpToolResult.cs` e `Extensions/ResultExtensions.cs` têm mensagens
-padrão em pt-BR (ex. `"Operação concluída com sucesso."`) misturadas com
-tool descriptions em inglês. Ao adicionar uma tool nova, siga o idioma já
-usado nas descrições de tool (inglês) — não introduza mais strings pt-BR
-hardcoded nesses helpers.

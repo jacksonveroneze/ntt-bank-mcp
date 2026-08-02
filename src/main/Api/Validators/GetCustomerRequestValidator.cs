@@ -1,7 +1,7 @@
 using FluentValidation;
 using NttBankMcp.Application.Customers.GetCustomer;
 
-namespace NttBankMcp.Mcp.Validators;
+namespace NttBankMcp.Api.Validators;
 
 public sealed class GetCustomerRequestValidator
     : AbstractValidator<GetCustomerRequest>

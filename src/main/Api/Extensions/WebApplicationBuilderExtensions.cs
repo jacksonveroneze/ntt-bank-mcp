@@ -1,7 +1,7 @@
 using NttBankMcp.Infrastructure.Configurations;
 using NttBankMcp.Infrastructure.Extensions;
 
-namespace NttBankMcp.Mcp.Extensions;
+namespace NttBankMcp.Api.Extensions;
 
 internal static class WebApplicationBuilderExtensions
 {

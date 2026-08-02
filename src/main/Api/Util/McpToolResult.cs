@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using JacksonVeroneze.NET.Result;
 using ModelContextProtocol.Protocol;
 
-namespace NttBankMcp.Mcp.Util;
+namespace NttBankMcp.Api.Util;
 
 public static class McpToolResult
 {
@@ -19,7 +19,7 @@ public static class McpToolResult
     {
         return Build(
             isError: false,
-            text: message ?? "Operação concluída com sucesso.",
+            text: message ?? "Operation completed successfully.",
             payload: new
             {
                 status = "success",
