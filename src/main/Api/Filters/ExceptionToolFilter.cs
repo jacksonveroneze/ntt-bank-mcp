@@ -23,7 +23,7 @@ internal static class ExceptionToolFilter
             catch (Exception ex)
             {
                 var logger = context.Services
-                    ?.GetService<ILogger>();
+                    ?.GetService<ILogger<Program>>();
 
                 logger?.LogToolUnhandledException(ex, context.Params.Name);
 
