@@ -28,7 +28,7 @@ public sealed class CustomerRepository(
         }
     }
 
-    public async Task<IReadOnlyCollection<CustomerAccountResult>?> GetAccountsAsync(
+    public async Task<IReadOnlyCollection<CustomerAccountResult>> GetAccountsAsync(
         int customerId,
         CancellationToken cancellationToken)
     {
