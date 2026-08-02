@@ -216,3 +216,30 @@ Depois de alterar, rode build, testes e format quando disponíveis.
 Informe o que mudou, comandos executados, riscos, limitações e pendências.
 
 Não execute ações destrutivas sem autorização explícita.
+
+## 13. Precedência / fonte da verdade
+
+Quando houver divergência entre fontes, a ordem de autoridade é:
+
+1. `/CLAUDE.md` (raiz) — regras globais.
+2. `CLAUDE.md` da camada — especializa a raiz; prevalece sobre a raiz apenas
+   no detalhe local que ela mesma define.
+3. Código existente — referência para detalhes que os `CLAUDE.md` **não**
+   especificam. **Não** é autoridade quando diverge deles.
+
+Regra prática quando o código existente contradiz um `CLAUDE.md`:
+
+- Siga o `CLAUDE.md` no código **novo**. O desvio no arquivo existente é débito,
+  não padrão a replicar (ex.: um mapper existente `public class` sem `sealed`
+  não autoriza novos mappers sem `sealed`).
+- **Sinalize** a divergência: "o arquivo X faz A, mas o `CLAUDE.md` pede B; sigo
+  B." Não siga o código em silêncio nem "corrija" o código em silêncio.
+- **Não** retrofite o arquivo divergente no mesmo passo — isso mistura escopo
+  (§11/§12). Só corrija se pedido explicitamente; caso contrário, registre como
+  pendência.
+- Onde código e `CLAUDE.md` **não** conflitam, o exemplo-âncora segue valendo
+  como referência de detalhe.
+
+Isto vale para **convenções e diretrizes**. Não confunda com "preservar
+comportamento existente" (§3): mudar convenção de código ≠ mudar comportamento
+de runtime — este último continua exigindo pedido explícito.
