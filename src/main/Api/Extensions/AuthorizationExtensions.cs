@@ -25,6 +25,11 @@ public static class AuthorizationExtensions
             {
                 AddJwtScopeRequirements(policy, AuthorizationScopes.CustomerRead);
             });
+
+            options.AddPolicy(AuthorizationPolicies.CustomerAccountsRead, policy =>
+            {
+                AddJwtScopeRequirements(policy, AuthorizationScopes.CustomerAccountsRead);
+            });
         });
 
         return services;
