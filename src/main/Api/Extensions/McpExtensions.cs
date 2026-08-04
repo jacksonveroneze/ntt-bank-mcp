@@ -27,6 +27,7 @@ public static class McpExtensions
             .WithHttpTransport(options => { options.Stateless = true; })
             .WithTools<GetCustumerByIdTool>()
             .WithTools<GetCustomerAccountsTool>()
+            .WithTools<GetAccountTool>()
             .WithPrompts<ComplexPromptType>();
 
         return services;
