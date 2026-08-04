@@ -6,15 +6,29 @@ namespace NttBankMcp.Infrastructure.HttpClients;
 
 public interface INttBankApi
 {
-    [Get("/customers/{id}")]
+    #region Customer
+
+    [Get("/v1/customers/{customerId}")]
     Task<CustomerResult> GetCustomerByIdAsync(
-        int id,
+        int customerId,
         CancellationToken cancellationToken);
-    
-    [Get("/customers/{id}/accounts")]
-    Task<IReadOnlyCollection<CustomerAccountResult>> GetCustomerAccountsAsync(
-        int id,
-        [Query] AccountType? accountType,
-        [Query] AccountStatus? status,
+
+    [Get("/v1/customers/{customerId}/accounts")]
+    Task<IReadOnlyCollection<AccountResult>> GetCustomerAccountsAsync(
+        int customerId,
+        [Query("accountType")] AccountType? accountType,
+        [Query("status")] AccountStatus? status,
+        [Query("hasBalance")] bool? hasBalance,
         CancellationToken cancellationToken);
+
+    #endregion
+
+    #region Branch
+
+    [Get("/v1/branches/{branchId}")]
+    Task<BranchResult> GetBranchByIdAsync(
+        int branchId,
+        CancellationToken cancellationToken);
+
+    #endregion
 }

@@ -16,8 +16,8 @@ public sealed class GetCustumerByIdTool(
 {
     #region constants
 
-    private const string GetCustomerToolName = "get_customer_by_id";
-    private const string GetCustomerToolTitle = "Get Customer by ID";
+    private const string GetCustomerToolName = "get_customer";
+    private const string GetCustomerToolTitle = "Get Customer";
 
     private const string GetCustomerToolDesc =
         """
@@ -33,7 +33,7 @@ public sealed class GetCustumerByIdTool(
         Title = GetCustomerToolTitle)]
     [Description(GetCustomerToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerRead)]
-    public async Task<CallToolResult> GetByIdAsync(
+    public async Task<CallToolResult> GetCustomerAsync(
         [Description(CustomerToolConstants.CustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken)
     {

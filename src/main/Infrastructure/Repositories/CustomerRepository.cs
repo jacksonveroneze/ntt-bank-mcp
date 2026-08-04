@@ -29,14 +29,15 @@ public sealed class CustomerRepository(
         }
     }
 
-    public async Task<IReadOnlyCollection<CustomerAccountResult>> GetAccountsAsync(
+    public async Task<IReadOnlyCollection<AccountResult>> GetAccountsAsync(
         int customerId,
         AccountType? accountType,
         AccountStatus? status,
         CancellationToken cancellationToken)
     {
         var result = await api.GetCustomerAccountsAsync(
-            customerId, accountType, status, cancellationToken);
+            customerId, accountType, status, 
+            hasBalance: null, cancellationToken);
 
         return result;
     }

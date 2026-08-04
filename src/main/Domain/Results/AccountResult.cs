@@ -3,7 +3,7 @@ using NttBankMcp.Domain.Enums;
 
 namespace NttBankMcp.Domain.Results;
 
-public sealed record CustomerAccountResult
+public sealed record AccountResult
 {
     [JsonPropertyName("accountId")]
     public int AccountId { get; init; }

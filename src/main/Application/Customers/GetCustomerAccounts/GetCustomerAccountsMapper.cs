@@ -9,7 +9,7 @@ public sealed class GetCustomerAccountsMapper : IRegister
     {
         ArgumentNullException.ThrowIfNull(config);
 
-        config.NewConfig<CustomerAccountResult, CustomerAccountResponse>()
+        config.NewConfig<AccountResult, CustomerAccountResponse>()
             .Map(dest => dest.AccountId, src => src.AccountId)
             .Map(dest => dest.BranchId, src => src.BranchId)
             .Map(dest => dest.AccountType, src => src.AccountType)
@@ -17,7 +17,7 @@ public sealed class GetCustomerAccountsMapper : IRegister
             .Map(dest => dest.OpenDate, src => src.OpenDate)
             .Map(dest => dest.Status, src => src.Status);
 
-        config.NewConfig<IReadOnlyCollection<CustomerAccountResult>,
+        config.NewConfig<IReadOnlyCollection<AccountResult>,
                 GetCustomerAccountsResponse>()
             .Map(dest => dest.Accounts, src => src);
     }

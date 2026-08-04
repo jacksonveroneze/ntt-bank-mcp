@@ -93,6 +93,8 @@ services:
       dockerfile: ./Dockerfile
     env_file:
       - .env
+    environment:
+      - AuthTokenGenerator__ClientSecret=${NTTBANK_AUTHTOKENGENERATOR_CLIENTSECRET}
     labels:
       - traefik.enable=true
 
@@ -108,7 +110,7 @@ services:
       - traefik.http.services.api_service.loadbalancer.healthcheck.path=/health?source=traefik
       - traefik.http.services.api_service.loadbalancer.healthcheck.port=8080
       - traefik.http.services.api_service.loadbalancer.healthcheck.scheme=http
-      - traefik.http.services.api_service.loadbalancer.healthcheck.interval=15s
+      - traefik.http.services.api_service.loadbalancer.healthcheck.interval=10s
       - traefik.http.services.api_service.loadbalancer.healthcheck.timeout=3s
 
       # Middlewares definitions

@@ -9,7 +9,7 @@ public interface ICustomerRepository
         int customerId,
         CancellationToken cancellationToken);
 
-    Task<IReadOnlyCollection<CustomerAccountResult>> GetAccountsAsync(
+    Task<IReadOnlyCollection<AccountResult>> GetAccountsAsync(
         int customerId,
         AccountType? accountType,
         AccountStatus? status,
