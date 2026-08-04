@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using NttBankMcp.Application.Abstractions.Repositories;
 using NttBankMcp.Application.Abstractions.Services;
+using NttBankMcp.Application.Customers.GetAccount;
 using NttBankMcp.Application.Customers.GetCustomer;
 using NttBankMcp.Application.Customers.GetCustomerAccounts;
 using NttBankMcp.Infrastructure.Repositories;
@@ -24,6 +25,8 @@ public static class AppServicesExtensions
 
         services.AddScoped<IGetCustomerAccountsUseCase,
             GetCustomerAccountsUseCase>();
+
+        services.AddScoped<IGetAccountUseCase, GetAccountUseCase>();
 
         return services;
     }

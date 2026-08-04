@@ -13,6 +13,16 @@ public static partial class LogMessagesExtensions
         string className, string methodName, int identifier);
 
     [LoggerMessage(
+        EventId = 1002,
+        Level = LogLevel.Warning,
+        Message = "{className} - {methodName} - " +
+                  "Identifier: '{identifier}' - " +
+                  "SecondaryIdentifier: '{secondaryIdentifier}' - NotFound")]
+    public static partial void LogNotFound(this ILogger logger,
+        string className, string methodName,
+        int identifier, int secondaryIdentifier);
+
+    [LoggerMessage(
         EventId = 1001,
         Level = LogLevel.Information,
         Message = "{className} - {methodName} - " +
