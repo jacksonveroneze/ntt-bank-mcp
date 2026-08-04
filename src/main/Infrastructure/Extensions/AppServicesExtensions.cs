@@ -41,6 +41,18 @@ public static class AppServicesExtensions
 
         #endregion
 
+        #region Card
+
+        services.AddScoped<ICardRepository, CardRepository>();
+
+        #endregion
+
+        #region Loan
+
+        services.AddScoped<ILoanRepository, LoanRepository>();
+
+        #endregion
+
         return services;
     }
 }
