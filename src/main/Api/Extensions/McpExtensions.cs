@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using ModelContextProtocol.Protocol;
 using NttBankMcp.Api.Prompts;
+using NttBankMcp.Api.Tools.Accounts;
 using NttBankMcp.Api.Tools.Customer;
 using NttBankMcp.Infrastructure.Configurations;
 
@@ -28,6 +29,7 @@ public static class McpExtensions
             .WithTools<GetCustumerByIdTool>()
             .WithTools<GetCustomerAccountsTool>()
             .WithTools<GetAccountTool>()
+            .WithTools<ListAccountTransactionsTool>()
             .WithPrompts<ComplexPromptType>();
 
         return services;
