@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using NttBankMcp.Application.Abstractions.Repositories;
-using NttBankMcp.Domain.Enums;
 using NttBankMcp.Domain.Results;
 using NttBankMcp.Infrastructure.HttpClients;
 using Refit;
@@ -27,49 +26,5 @@ public sealed class CustomerRepository(
         {
             return null;
         }
-    }
-
-    public async Task<IReadOnlyCollection<AccountResult>> GetAccountsAsync(
-        int customerId,
-        AccountType? accountType,
-        AccountStatus? status,
-        CancellationToken cancellationToken)
-    {
-        var result = await api.GetCustomerAccountsAsync(
-            customerId, accountType, status, 
-            hasBalance: null, cancellationToken);
-
-        return result;
-    }
-
-    public async Task<AccountResult?> GetAccountByIdAsync(
-        int customerId,
-        int accountId,
-        CancellationToken cancellationToken)
-    {
-        try
-        {
-            var result = await api.GetCustomerAccountByIdAsync(
-                customerId, accountId, cancellationToken);
-
-            return result;
-        }
-        catch (ApiException ex)
-            when (ex.StatusCode is HttpStatusCode.NotFound)
-        {
-            return null;
-        }
-    }
-
-    public async Task<IReadOnlyCollection<AccountTransactionResult>>
-        GetTransactionsByAccountIdAsync(
-            int customerId,
-            int accountId,
-            CancellationToken cancellationToken)
-    {
-        var result = await api.GetTransactionsByAccountIdAsync(
-            customerId, accountId, cancellationToken);
-
-        return result;
     }
 }

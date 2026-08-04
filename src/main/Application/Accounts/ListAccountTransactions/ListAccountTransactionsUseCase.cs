@@ -11,7 +11,7 @@ namespace NttBankMcp.Application.Accounts.ListAccountTransactions;
 public sealed class ListAccountTransactionsUseCase(
     ILogger<ListAccountTransactionsUseCase> logger,
     IMapper mapper,
-    ICustomerRepository repository) : IListAccountTransactionsUseCase
+    IAccountRepository repository) : IListAccountTransactionsUseCase
 {
     public async Task<Result<ListAccountTransactionsResponse>> ExecuteAsync(
         ListAccountTransactionsRequest request,

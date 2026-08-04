@@ -10,7 +10,7 @@ namespace NttBankMcp.Application.Customers.GetCustomerAccounts;
 public sealed class GetCustomerAccountsUseCase(
     ILogger<GetCustomerAccountsUseCase> logger,
     IMapper mapper,
-    ICustomerRepository customerRepository,
+    IAccountRepository accountRepository,
     IBranchRepository branchRepository) : IGetCustomerAccountsUseCase
 {
     public async Task<Result<GetCustomerAccountsResponse>> ExecuteAsync(
@@ -19,7 +19,7 @@ public sealed class GetCustomerAccountsUseCase(
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        var accounts = await customerRepository.GetAccountsAsync(
+        var accounts = await accountRepository.GetAccountsByCustomerIdAsync(
             request.CustomerId,
             request.AccountType,
             request.Status,

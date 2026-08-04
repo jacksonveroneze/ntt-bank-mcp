@@ -11,7 +11,7 @@ namespace NttBankMcp.Application.Customers.GetAccount;
 public sealed class GetAccountUseCase(
     ILogger<GetAccountUseCase> logger,
     IMapper mapper,
-    ICustomerRepository repository) : IGetAccountUseCase
+    IAccountRepository repository) : IGetAccountUseCase
 {
     public async Task<Result<GetAccountResponse>> ExecuteAsync(
         GetAccountRequest request,

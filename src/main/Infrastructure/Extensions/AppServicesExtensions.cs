@@ -19,6 +19,7 @@ public static class AppServicesExtensions
         services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<IBranchRepository, BranchRepository>();
 
         services.AddScoped<IGetCustomerUseCase, GetCustomerUseCase>();

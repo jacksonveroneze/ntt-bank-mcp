@@ -76,6 +76,6 @@ Se o usuário pedir ajuste, refaça e confirme de novo. Não commite sem o "ok".
 Após confirmação:
 
 1. `git add <paths explícitos>`
-2. `git commit -m "<assunto>"` (e `-m "<corpo>"` se houver).
+2. `git commit -a -m "<assunto>"` (e `-m "<corpo>"` se houver).
 3. Rode `git status` e reporte: hash curto, arquivos commitados e o que ficou
    de fora (unstaged/pendente). **Sem push.**
