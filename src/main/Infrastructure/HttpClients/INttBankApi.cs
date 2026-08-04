@@ -21,6 +21,12 @@ public interface INttBankApi
         [Query("hasBalance")] bool? hasBalance,
         CancellationToken cancellationToken);
 
+    [Get("/v1/customers/{customerId}/accounts/{accountId}")]
+    Task<AccountResult> GetCustomerAccountByIdAsync(
+        int customerId,
+        int accountId,
+        CancellationToken cancellationToken);
+    
     #endregion
 
     #region Branch

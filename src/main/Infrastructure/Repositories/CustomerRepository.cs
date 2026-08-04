@@ -41,4 +41,23 @@ public sealed class CustomerRepository(
 
         return result;
     }
+
+    public async Task<AccountResult?> GetAccountByIdAsync(
+        int customerId, 
+        int accountId, 
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var result = await api.GetCustomerAccountByIdAsync(
+                customerId, accountId, cancellationToken);
+
+            return result;
+        }
+        catch (ApiException ex)
+            when (ex.StatusCode is HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+    }
 }

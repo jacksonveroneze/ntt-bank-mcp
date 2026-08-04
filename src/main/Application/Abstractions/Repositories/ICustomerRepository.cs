@@ -14,4 +14,9 @@ public interface ICustomerRepository
         AccountType? accountType,
         AccountStatus? status,
         CancellationToken cancellationToken);
+
+    Task<AccountResult?> GetAccountByIdAsync(
+        int customerId,
+        int accountId,
+        CancellationToken cancellationToken);
 }
