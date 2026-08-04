@@ -26,14 +26,13 @@ public sealed class AccountRepository(
     }
 
     public async Task<AccountResult?> GetAccountByIdAsync(
-        int customerId,
         int accountId,
         CancellationToken cancellationToken)
     {
         try
         {
-            var result = await api.GetCustomerAccountByIdAsync(
-                customerId, accountId, cancellationToken);
+            var result = await api.GetAccountByIdAsync(
+                accountId, cancellationToken);
 
             return result;
         }
@@ -46,12 +45,11 @@ public sealed class AccountRepository(
 
     public async Task<IReadOnlyCollection<AccountTransactionResult>>
         GetTransactionsByAccountIdAsync(
-            int customerId,
             int accountId,
             CancellationToken cancellationToken)
     {
         var result = await api.GetTransactionsByAccountIdAsync(
-            customerId, accountId, cancellationToken);
+            accountId, cancellationToken);
 
         return result;
     }

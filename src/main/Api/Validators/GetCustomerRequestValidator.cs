@@ -1,4 +1,5 @@
 using FluentValidation;
+using NttBankMcp.Api.Validators.Common;
 using NttBankMcp.Application.Customers.GetCustomer;
 
 namespace NttBankMcp.Api.Validators;
@@ -9,8 +10,6 @@ public sealed class GetCustomerRequestValidator
     public GetCustomerRequestValidator()
     {
         RuleFor(rule => rule.CustomerId)
-            .GreaterThan(0)
-            .WithErrorCode("Customer.InvalidId")
-            .WithMessage("Customer identifier must be greater than zero.");
+            .SetValidator(new CustomerIdValidator());
     }
 }

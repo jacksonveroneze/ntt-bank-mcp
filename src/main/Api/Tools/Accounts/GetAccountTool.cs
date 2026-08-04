@@ -5,9 +5,9 @@ using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using NttBankMcp.Api.Extensions;
 using NttBankMcp.Api.Security;
-using NttBankMcp.Application.Customers.GetAccount;
+using NttBankMcp.Application.Accounts.GetAccount;
 
-namespace NttBankMcp.Api.Tools.Customer;
+namespace NttBankMcp.Api.Tools.Accounts;
 
 [McpServerToolType]
 public sealed class GetAccountTool(
@@ -35,9 +35,6 @@ public sealed class GetAccountTool(
         accounts first before calling this tool.
         """;
 
-    private const string AccountIdParamDesc =
-        "The unique numeric identifier of the account (must be greater than zero).";
-
     #endregion
 
     [McpServerTool(
@@ -46,11 +43,10 @@ public sealed class GetAccountTool(
     [Description(GetAccountToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerAccountsRead)]
     public async Task<CallToolResult> GetAccountAsync(
-        [Description(CustomerToolConstants.CustomerIdParamDesc)] int customerId,
-        [Description(AccountIdParamDesc)] int accountId,
+        [Description(SharedToolConstants.AccountIdParamDesc)] int accountId,
         CancellationToken cancellationToken)
     {
-        var request = new GetAccountRequest(customerId, accountId);
+        var request = new GetAccountRequest(accountId);
 
         var validation = await validator
             .ValidateAsync(request, cancellationToken);

@@ -12,12 +12,10 @@ public interface IAccountRepository
         CancellationToken cancellationToken);
 
     Task<AccountResult?> GetAccountByIdAsync(
-        int customerId,
         int accountId,
         CancellationToken cancellationToken);
 
     Task<IReadOnlyCollection<AccountTransactionResult>> GetTransactionsByAccountIdAsync(
-        int customerId,
         int accountId,
         CancellationToken cancellationToken);
 }

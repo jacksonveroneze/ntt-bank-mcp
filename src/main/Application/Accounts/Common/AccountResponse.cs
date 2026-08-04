@@ -1,8 +1,8 @@
 using NttBankMcp.Domain.Enums;
 
-namespace NttBankMcp.Application.Customers.GetAccount;
+namespace NttBankMcp.Application.Accounts.Common;
 
-public sealed record GetAccountResponse
+public sealed record AccountResponse
 {
     public int AccountId { get; init; }
 

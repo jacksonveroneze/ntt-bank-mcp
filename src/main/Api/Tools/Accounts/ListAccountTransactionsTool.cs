@@ -5,7 +5,6 @@ using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using NttBankMcp.Api.Extensions;
 using NttBankMcp.Api.Security;
-using NttBankMcp.Api.Tools.Customer;
 using NttBankMcp.Application.Accounts.ListAccountTransactions;
 
 namespace NttBankMcp.Api.Tools.Accounts;
@@ -42,9 +41,6 @@ public sealed class ListAccountTransactionsTool(
         accounts first.
         """;
 
-    private const string AccountIdParamDesc =
-        "The unique numeric identifier of the account (must be greater than zero).";
-
     #endregion
 
     [McpServerTool(
@@ -53,11 +49,10 @@ public sealed class ListAccountTransactionsTool(
     [Description(ListAccountTransactionsToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.AccountTransactionsRead)]
     public async Task<CallToolResult> ListTransactionsAsync(
-        [Description(CustomerToolConstants.CustomerIdParamDesc)] int customerId,
-        [Description(AccountIdParamDesc)] int accountId,
+        [Description(SharedToolConstants.AccountIdParamDesc)] int accountId,
         CancellationToken cancellationToken)
     {
-        var request = new ListAccountTransactionsRequest(customerId, accountId);
+        var request = new ListAccountTransactionsRequest(accountId);
 
         var validation = await validator
             .ValidateAsync(request, cancellationToken);

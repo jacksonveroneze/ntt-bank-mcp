@@ -5,10 +5,10 @@ using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using NttBankMcp.Api.Extensions;
 using NttBankMcp.Api.Security;
-using NttBankMcp.Application.Customers.GetCustomerAccounts;
+using NttBankMcp.Application.Accounts.GetCustomerAccounts;
 using NttBankMcp.Domain.Enums;
 
-namespace NttBankMcp.Api.Tools.Customer;
+namespace NttBankMcp.Api.Tools.Accounts;
 
 [McpServerToolType]
 public sealed class GetCustomerAccountsTool(
@@ -55,7 +55,7 @@ public sealed class GetCustomerAccountsTool(
     [Description(GetCustomerAccountsToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerAccountsRead)]
     public async Task<CallToolResult> GetAccountsAsync(
-        [Description(CustomerToolConstants.CustomerIdParamDesc)] int customerId,
+        [Description(SharedToolConstants.CustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken,
         [Description(AccountTypeParamDesc)] AccountType? accountType = null,
         [Description(StatusParamDesc)] AccountStatus? status = null)

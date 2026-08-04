@@ -20,21 +20,21 @@ public sealed class ListAccountTransactionsUseCase(
         ArgumentNullException.ThrowIfNull(request);
 
         var account = await repository.GetAccountByIdAsync(
-            request.CustomerId, request.AccountId, cancellationToken);
+            request.AccountId, cancellationToken);
 
         if (account is null)
         {
             var error = DomainErrors.AccountError.NotFound;
 
             logger.LogNotFound(nameof(ListAccountTransactionsUseCase),
-                nameof(ExecuteAsync), request.CustomerId, request.AccountId);
+                nameof(ExecuteAsync), request.AccountId);
 
             return Result<ListAccountTransactionsResponse>
                 .FromNotFound(error);
         }
 
         var transactions = await repository.GetTransactionsByAccountIdAsync(
-            request.CustomerId, request.AccountId, cancellationToken);
+            request.AccountId, cancellationToken);
 
         if (transactions.Count is 0)
         {

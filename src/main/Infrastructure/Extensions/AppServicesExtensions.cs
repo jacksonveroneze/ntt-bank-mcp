@@ -2,9 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
 using NttBankMcp.Application.Abstractions.Repositories;
 using NttBankMcp.Application.Abstractions.Services;
-using NttBankMcp.Application.Customers.GetAccount;
+using NttBankMcp.Application.Accounts.GetAccount;
+using NttBankMcp.Application.Accounts.GetCustomerAccounts;
+using NttBankMcp.Application.Accounts.ListAccountTransactions;
 using NttBankMcp.Application.Customers.GetCustomer;
-using NttBankMcp.Application.Customers.GetCustomerAccounts;
 using NttBankMcp.Infrastructure.Repositories;
 using NttBankMcp.Infrastructure.Services;
 
@@ -28,6 +29,9 @@ public static class AppServicesExtensions
             GetCustomerAccountsUseCase>();
 
         services.AddScoped<IGetAccountUseCase, GetAccountUseCase>();
+
+        services.AddScoped<IListAccountTransactionsUseCase,
+            ListAccountTransactionsUseCase>();
 
         return services;
     }

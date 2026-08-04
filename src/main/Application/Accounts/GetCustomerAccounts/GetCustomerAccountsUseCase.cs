@@ -5,7 +5,7 @@ using NttBankMcp.Application.Abstractions.Repositories;
 using NttBankMcp.Application.Extensions;
 using NttBankMcp.Domain.Results;
 
-namespace NttBankMcp.Application.Customers.GetCustomerAccounts;
+namespace NttBankMcp.Application.Accounts.GetCustomerAccounts;
 
 public sealed class GetCustomerAccountsUseCase(
     ILogger<GetCustomerAccountsUseCase> logger,

@@ -34,7 +34,7 @@ public sealed class GetCustumerByIdTool(
     [Description(GetCustomerToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerRead)]
     public async Task<CallToolResult> GetCustomerAsync(
-        [Description(CustomerToolConstants.CustomerIdParamDesc)] int customerId,
+        [Description(SharedToolConstants.CustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken)
     {
         var request = new GetCustomerRequest(customerId);
