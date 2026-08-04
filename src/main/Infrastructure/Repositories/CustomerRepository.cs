@@ -43,8 +43,8 @@ public sealed class CustomerRepository(
     }
 
     public async Task<AccountResult?> GetAccountByIdAsync(
-        int customerId, 
-        int accountId, 
+        int customerId,
+        int accountId,
         CancellationToken cancellationToken)
     {
         try
@@ -59,5 +59,17 @@ public sealed class CustomerRepository(
         {
             return null;
         }
+    }
+
+    public async Task<IReadOnlyCollection<AccountTransactionResult>>
+        GetTransactionsByAccountIdAsync(
+            int customerId,
+            int accountId,
+            CancellationToken cancellationToken)
+    {
+        var result = await api.GetTransactionsByAccountIdAsync(
+            customerId, accountId, cancellationToken);
+
+        return result;
     }
 }

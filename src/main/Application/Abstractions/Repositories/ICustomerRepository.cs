@@ -19,4 +19,9 @@ public interface ICustomerRepository
         int customerId,
         int accountId,
         CancellationToken cancellationToken);
+
+    Task<IReadOnlyCollection<AccountTransactionResult>> GetTransactionsByAccountIdAsync(
+        int customerId,
+        int accountId,
+        CancellationToken cancellationToken);
 }

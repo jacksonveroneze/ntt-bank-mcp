@@ -26,7 +26,13 @@ public interface INttBankApi
         int customerId,
         int accountId,
         CancellationToken cancellationToken);
-    
+
+    [Get("/v1/customers/{customerId}/accounts/{accountId}/transactions")]
+    Task<IReadOnlyCollection<AccountTransactionResult>> GetTransactionsByAccountIdAsync(
+        int customerId,
+        int accountId,
+        CancellationToken cancellationToken);
+
     #endregion
 
     #region Branch
