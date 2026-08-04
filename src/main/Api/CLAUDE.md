@@ -10,9 +10,8 @@ específico de criação de tools.
 
 ## Padrão de referência
 
-`Tools/Customer/GetCustumerByIdTool.cs` é a tool existente e o padrão a
-seguir (nome do arquivo tem um typo histórico — "Custumer" — não repita o
-typo em tools novas).
+`Tools/Customers/GetCustomerByIdTool.cs` é a tool existente e o padrão a
+seguir.
 
 ## Passo a passo para criar uma nova tool
 

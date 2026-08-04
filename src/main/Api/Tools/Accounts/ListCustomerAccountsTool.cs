@@ -5,22 +5,22 @@ using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using NttBankMcp.Api.Extensions;
 using NttBankMcp.Api.Security;
-using NttBankMcp.Application.Accounts.GetCustomerAccounts;
+using NttBankMcp.Application.Accounts.ListCustomerAccounts;
 using NttBankMcp.Domain.Enums;
 
 namespace NttBankMcp.Api.Tools.Accounts;
 
 [McpServerToolType]
-public sealed class GetCustomerAccountsTool(
-    IValidator<GetCustomerAccountsRequest> validator,
-    IGetCustomerAccountsUseCase useCase)
+public sealed class ListCustomerAccountsTool(
+    IValidator<ListCustomerAccountsRequest> validator,
+    IListCustomerAccountsUseCase useCase)
 {
     #region constants
 
-    private const string GetCustomerAccountsToolName = "get_customer_accounts";
-    private const string GetCustomerAccountsToolTitle = "Get Customer Accounts";
+    private const string ListCustomerAccountsToolName = "list_customer_accounts";
+    private const string ListCustomerAccountsToolTitle = "List Customer Accounts";
 
-    private const string GetCustomerAccountsToolDesc =
+    private const string ListCustomerAccountsToolDesc =
         """
         Lists the bank accounts owned by a single customer, identified by their
         unique numeric ID. Each account includes its account ID, branch ID, account
@@ -50,17 +50,17 @@ public sealed class GetCustomerAccountsTool(
     #endregion
 
     [McpServerTool(
-        Name = GetCustomerAccountsToolName,
-        Title = GetCustomerAccountsToolTitle)]
-    [Description(GetCustomerAccountsToolDesc)]
+        Name = ListCustomerAccountsToolName,
+        Title = ListCustomerAccountsToolTitle)]
+    [Description(ListCustomerAccountsToolDesc)]
     [Authorize(Policy = AuthorizationPolicies.CustomerAccountsRead)]
-    public async Task<CallToolResult> GetAccountsAsync(
+    public async Task<CallToolResult> ListAccountsAsync(
         [Description(SharedToolConstants.CustomerIdParamDesc)] int customerId,
         CancellationToken cancellationToken,
         [Description(AccountTypeParamDesc)] AccountType? accountType = null,
         [Description(StatusParamDesc)] AccountStatus? status = null)
     {
-        var request = new GetCustomerAccountsRequest(
+        var request = new ListCustomerAccountsRequest(
             customerId, accountType, status);
 
         var validation = await validator

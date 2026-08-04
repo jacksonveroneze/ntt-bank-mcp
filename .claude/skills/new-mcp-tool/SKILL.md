@@ -7,7 +7,7 @@ description: Use quando o usuário pedir para criar/adicionar uma nova MCP tool
 # new-mcp-tool
 
 Scaffold de uma MCP tool na camada **Mcp/Api**, seguindo o padrão de
-`Tools/Customer/GetCustumerByIdTool.cs` e as regras de `/CLAUDE.md` (raiz —
+`Tools/Customers/GetCustomerByIdTool.cs` e as regras de `/CLAUDE.md` (raiz —
 **incluindo a seção de segurança MCP global**) e do `CLAUDE.md` de `Mcp`. **Leia
 esses arquivos antes de gerar código** — esta skill assume as convenções deles e
 não as repete.
@@ -17,7 +17,7 @@ policy/scope). Não cria use cases, Domain nem Infrastructure — se algum for
 necessário, **alerta e para**.
 
 **Fonte da verdade:** os `CLAUDE.md` mandam, não o código existente. Onde o
-exemplo-âncora (`GetCustumerByIdTool.cs`) divergir de um `CLAUDE.md`, siga o
+exemplo-âncora (`GetCustomerByIdTool.cs`) divergir de um `CLAUDE.md`, siga o
 `CLAUDE.md` e **liste a divergência como alerta** (ver §13 da raiz) — é
 referência de estrutura, não de conformidade.
 
@@ -36,8 +36,7 @@ pare** (rode a skill `new-usecase` antes) — a tool é fina, só orquestra o us
 ## 1. Tool — escopo principal (`Tools/<Feature>/`)
 
 Crie seguindo o passo a passo do `CLAUDE.md` de Mcp (o *como* está lá; use
-`GetCustumerByIdTool.cs` como referência de estrutura — **não repita o typo
-"Custumer"** no nome do arquivo/classe).
+`GetCustomerByIdTool.cs` como referência de estrutura).
 
 Artefatos a produzir:
 

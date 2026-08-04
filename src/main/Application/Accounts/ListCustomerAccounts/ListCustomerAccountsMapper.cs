@@ -1,16 +1,16 @@
 using Mapster;
 using NttBankMcp.Domain.Results;
 
-namespace NttBankMcp.Application.Accounts.GetCustomerAccounts;
+namespace NttBankMcp.Application.Accounts.ListCustomerAccounts;
 
-public sealed class GetCustomerAccountsMapper : IRegister
+public sealed class ListCustomerAccountsMapper : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
         ArgumentNullException.ThrowIfNull(config);
 
         config.NewConfig<IReadOnlyCollection<AccountResult>,
-                GetCustomerAccountsResponse>()
+                ListCustomerAccountsResponse>()
             .Map(dest => dest.Accounts, src => src);
     }
 }

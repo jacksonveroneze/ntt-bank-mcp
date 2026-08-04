@@ -7,10 +7,10 @@ using NttBankMcp.Api.Extensions;
 using NttBankMcp.Api.Security;
 using NttBankMcp.Application.Customers.GetCustomer;
 
-namespace NttBankMcp.Api.Tools.Customer;
+namespace NttBankMcp.Api.Tools.Customers;
 
 [McpServerToolType]
-public sealed class GetCustumerByIdTool(
+public sealed class GetCustomerByIdTool(
     IValidator<GetCustomerRequest> validator,
     IGetCustomerUseCase useCase)
 {

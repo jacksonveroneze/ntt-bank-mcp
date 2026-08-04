@@ -11,6 +11,7 @@ public static class McpToolResult
         new(JsonSerializerDefaults.Web)
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            Converters = { new JsonStringEnumConverter() },
         };
 
     public static CallToolResult Success<T>(

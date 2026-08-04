@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using NttBankMcp.Domain.Enums;
 
 namespace NttBankMcp.Application.Accounts.Common;

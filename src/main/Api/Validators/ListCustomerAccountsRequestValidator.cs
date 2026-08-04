@@ -1,13 +1,13 @@
 using FluentValidation;
 using NttBankMcp.Api.Validators.Common;
-using NttBankMcp.Application.Accounts.GetCustomerAccounts;
+using NttBankMcp.Application.Accounts.ListCustomerAccounts;
 
 namespace NttBankMcp.Api.Validators;
 
-public sealed class GetCustomerAccountsRequestValidator
-    : AbstractValidator<GetCustomerAccountsRequest>
+public sealed class ListCustomerAccountsRequestValidator
+    : AbstractValidator<ListCustomerAccountsRequest>
 {
-    public GetCustomerAccountsRequestValidator()
+    public ListCustomerAccountsRequestValidator()
     {
         RuleFor(rule => rule.CustomerId)
             .SetValidator(new CustomerIdValidator());
