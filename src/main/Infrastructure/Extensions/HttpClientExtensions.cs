@@ -34,7 +34,7 @@ public static class HttpClientExtensions
             .AddClient(appConfiguration.HttpClientNttBank.Name, client =>
             {
                 var config = appConfiguration.AuthTokenGenerator;
-                
+
                 client.TokenEndpoint = config.TokenEndpoint;
                 client.ClientId = ClientId.Parse(config.ClientId);
                 client.ClientSecret = ClientSecret.Parse(config.ClientSecret);
@@ -46,10 +46,13 @@ public static class HttpClientExtensions
 
                 if (!string.IsNullOrWhiteSpace(config.Audience))
                 {
-                    client.Parameters = new Parameters { { "audience", config.Audience } };
+                    client.Parameters = new Duende.IdentityModel.Client.Parameters
+                    {
+                        { "audience", config.Audience },
+                    };
                 }
             });
-        
+
         return services;
     }
 }

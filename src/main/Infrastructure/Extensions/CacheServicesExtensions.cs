@@ -17,8 +17,8 @@ public static class CacheServicesExtensions
 
         services.AddHybridCache(options =>
         {
-            options.MaximumPayloadBytes = 1024 * 1024;
-            options.MaximumKeyLength = 1024;
+            options.MaximumPayloadBytes = 1024 * 1024 * 1;
+            options.MaximumKeyLength = 256;
             options.DefaultEntryOptions = new HybridCacheEntryOptions
             {
                 Expiration = TimeSpan.FromMinutes(5),

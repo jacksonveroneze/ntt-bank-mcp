@@ -9,6 +9,8 @@ public sealed record AppConfiguration
 
     public required CacheConfiguration Cache { get; init; }
 
+    public required OpenTelemetryConfiguration OpenTelemetry { get; init; }
+
     public required AuthTokenAuthenticationConfiguration AuthTokenAuthentication { get; init; }
 
     public required AuthTokenGeneratorConfiguration AuthTokenGenerator { get; init; }

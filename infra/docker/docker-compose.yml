@@ -3,6 +3,7 @@ services:
     container_name: loadbalancer
     image: traefik:v3.7
     restart: unless-stopped
+    read_only: true
     command:
       # EntryPoints
       - --entrypoints.http.address=:80
@@ -88,6 +89,7 @@ services:
   mcp:
     image: ntt-bank-mcp:latest
     restart: unless-stopped
+    read_only: true
     build:
       context: ../../src
       dockerfile: ./Dockerfile

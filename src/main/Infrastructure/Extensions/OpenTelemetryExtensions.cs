@@ -57,16 +57,26 @@ public static class OpenTelemetryExtensions
 
             return builder;
         }
-        
+
         private IOpenTelemetryBuilder AddTracing(
             AppConfiguration appConfiguration)
         {
+            if (appConfiguration.OpenTelemetry.EndpointTracing is null)
+            {
+                return builder;
+            }
+
             builder.WithTracing(tracing =>
             {
                 tracing
                     .AddSource(appConfiguration.Application.Name)
                     .AddAspNetCoreInstrumentation()
-                    .AddHttpClientInstrumentation();
+                    .AddHttpClientInstrumentation()
+                    .AddRedisInstrumentation()
+                    .AddSource(appConfiguration.Application.Name);
+
+                tracing.AddOtlpExporter(config => config.Endpoint =
+                    appConfiguration.OpenTelemetry.EndpointTracing);
             });
 
             return builder;

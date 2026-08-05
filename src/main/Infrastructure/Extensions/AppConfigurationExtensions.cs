@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NttBankMcp.Infrastructure.Configurations;
+using NttBankMcp.Infrastructure.Parameters;
 
 namespace NttBankMcp.Infrastructure.Extensions;
 
@@ -17,6 +18,8 @@ public static class AppConfigurationExtensions
             ArgumentNullException.ThrowIfNull(configuration);
 
             services.AddConfiguration<AppConfiguration>(configuration);
+            services.AddConfiguration<BranchCacheConfiguration>(
+                configuration, BranchCacheConfiguration.SectionName);
 
             return services;
         }
