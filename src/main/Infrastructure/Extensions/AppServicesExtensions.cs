@@ -38,6 +38,7 @@ public static class AppServicesExtensions
         #region Branch
 
         services.AddScoped<IBranchRepository, BranchRepository>();
+        services.AddScoped<IBranchCacheRepository, BranchCacheRepository>();
 
         #endregion
 

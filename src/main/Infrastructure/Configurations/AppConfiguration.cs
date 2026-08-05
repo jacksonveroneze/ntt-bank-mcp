@@ -5,11 +5,13 @@ namespace NttBankMcp.Infrastructure.Configurations;
 [ExcludeFromCodeCoverage]
 public sealed record AppConfiguration
 {
-    public AppInfoConfiguration? Application { get; init; }
-    
-    public AuthTokenAuthenticationConfiguration? AuthTokenAuthentication { get; init; }
+    public required AppInfoConfiguration Application { get; init; }
 
-    public AuthTokenGeneratorConfiguration? AuthTokenGenerator { get; init; }
-    
-    public HttpClientConfiguration? HttpClientNttBank { get; init; }
+    public required CacheConfiguration Cache { get; init; }
+
+    public required AuthTokenAuthenticationConfiguration AuthTokenAuthentication { get; init; }
+
+    public required AuthTokenGeneratorConfiguration AuthTokenGenerator { get; init; }
+
+    public required HttpClientConfiguration HttpClientNttBank { get; init; }
 }

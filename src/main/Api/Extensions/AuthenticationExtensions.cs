@@ -22,7 +22,7 @@ public static class AuthenticationExtensions
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
                 options.RequireHttpsMetadata = true;
-                options.Authority = appConfiguration.AuthTokenAuthentication!.Authority;
+                options.Authority = appConfiguration.AuthTokenAuthentication.Authority;
                 options.Audience = appConfiguration.AuthTokenAuthentication.Audience;
 
                 options.TokenValidationParameters =

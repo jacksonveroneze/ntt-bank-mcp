@@ -20,6 +20,9 @@
     <Folder Name="/SolutionItems/claude/skills/new-mcp-tool/">
         <File Path="..\.claude\skills\new-mcp-tool\SKILL.md" />
     </Folder>
+    <Folder Name="/SolutionItems/claude/skills/new-repository/">
+        <File Path="..\.claude\skills\new-repository\SKILL.md" />
+    </Folder>
     <Folder Name="/SolutionItems/claude/skills/new-usecase/">
         <File Path="..\.claude\skills\new-usecase\SKILL.md" />
     </Folder>

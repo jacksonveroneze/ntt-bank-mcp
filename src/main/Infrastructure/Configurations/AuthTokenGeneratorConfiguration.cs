@@ -5,13 +5,13 @@ namespace NttBankMcp.Infrastructure.Configurations;
 [ExcludeFromCodeCoverage]
 public sealed record AuthTokenGeneratorConfiguration
 {
-    public Uri? TokenEndpoint { get; init; }
+    public required Uri TokenEndpoint { get; init; }
 
-    public string? ClientId { get; init; }
+    public required string ClientId { get; init; }
 
-    public string? ClientSecret { get; init; }
+    public required string ClientSecret { get; init; }
 
-    public string? Audience { get; init; }
+    public required string Audience { get; init; }
     
-    public string? Scopes { get; init; }
+    public required string Scopes { get; init; }
 }

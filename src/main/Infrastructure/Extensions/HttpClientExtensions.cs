@@ -21,20 +21,23 @@ public static class HttpClientExtensions
         services.AddRefitClient<INttBankApi>()
             .ConfigureHttpClient(config =>
             {
-                config.BaseAddress = appConfiguration.HttpClientNttBank!.Address;
+                config.BaseAddress = appConfiguration.HttpClientNttBank.Address;
             })
             .AddClientCredentialsTokenHandler(
-                ClientCredentialsClientName.Parse(appConfiguration.HttpClientNttBank!.Name!))
+                ClientCredentialsClientName.Parse(appConfiguration.HttpClientNttBank.Name))
             .AddStandardResilienceHandler();
 
-        services.AddClientCredentialsTokenManagement()
-            .AddClient(appConfiguration.HttpClientNttBank.Name!, client =>
+        services.AddClientCredentialsTokenManagement(conf =>
             {
-                var config = appConfiguration.AuthTokenGenerator!;
+                conf.CacheKeyPrefix = "identity_manager";
+            })
+            .AddClient(appConfiguration.HttpClientNttBank.Name, client =>
+            {
+                var config = appConfiguration.AuthTokenGenerator;
                 
                 client.TokenEndpoint = config.TokenEndpoint;
-                client.ClientId = ClientId.Parse(config.ClientId!);
-                client.ClientSecret = ClientSecret.Parse(config.ClientSecret!);
+                client.ClientId = ClientId.Parse(config.ClientId);
+                client.ClientSecret = ClientSecret.Parse(config.ClientSecret);
 
                 if (!string.IsNullOrWhiteSpace(config.Scopes))
                 {

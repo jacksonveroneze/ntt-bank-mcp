@@ -36,8 +36,8 @@ public static class OpenTelemetryExtensions
         void ConfigureResource(ResourceBuilder r)
         {
             r.AddService(
-                appConfiguration.Application!.Name!,
-                serviceVersion: appConfiguration.Application.Version!.ToString(),
+                appConfiguration.Application.Name,
+                serviceVersion: appConfiguration.Application.Version.ToString(),
                 serviceInstanceId: Environment.MachineName);
         }
     }
@@ -48,7 +48,7 @@ public static class OpenTelemetryExtensions
             AppConfiguration appConfiguration)
         {
             builder.WithMetrics(opts => opts
-                .AddMeter(appConfiguration.Application!.Name!)
+                .AddMeter(appConfiguration.Application.Name)
                 .AddProcessInstrumentation()
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
@@ -64,7 +64,7 @@ public static class OpenTelemetryExtensions
             builder.WithTracing(tracing =>
             {
                 tracing
-                    .AddSource(appConfiguration.Application!.Name!)
+                    .AddSource(appConfiguration.Application.Name)
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation();
             });

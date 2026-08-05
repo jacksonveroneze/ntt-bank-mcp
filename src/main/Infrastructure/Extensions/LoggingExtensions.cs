@@ -20,9 +20,9 @@ public static class LoggingExtensions
                 .ReadFrom.Services(services)
                 .Enrich.FromLogContext()
                 .Enrich.WithProperty("ApplicationName",
-                    appConfiguration.Application!.Name!)
+                    appConfiguration.Application.Name)
                 .Enrich.WithProperty("ApplicationVersion",
-                    appConfiguration.Application.Version!.ToString());
+                    appConfiguration.Application.Version.ToString());
         });
 
         return builder;

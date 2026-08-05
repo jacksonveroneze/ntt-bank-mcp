@@ -18,8 +18,8 @@ public static class McpExtensions
             {
                 configureOption.ServerInfo = new Implementation
                 {
-                    Name = appConfiguration.Application!.Name!,
-                    Version = appConfiguration.Application.Version!.ToString(),
+                    Name = appConfiguration.Application.Name,
+                    Version = appConfiguration.Application.Version.ToString(),
                     Description = appConfiguration.Application.Description,
                 };
             })

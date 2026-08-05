@@ -11,7 +11,7 @@ public sealed class ListCustomerAccountsUseCase(
     ILogger<ListCustomerAccountsUseCase> logger,
     IMapper mapper,
     IAccountRepository accountRepository,
-    IBranchRepository branchRepository) : IListCustomerAccountsUseCase
+    IBranchCacheRepository branchRepository) : IListCustomerAccountsUseCase
 {
     public async Task<Result<ListCustomerAccountsResponse>> ExecuteAsync(
         ListCustomerAccountsRequest request,
