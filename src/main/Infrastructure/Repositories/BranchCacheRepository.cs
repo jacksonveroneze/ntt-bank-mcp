@@ -36,4 +36,11 @@ public sealed class BranchCacheRepository(
     {
         return repository.GetByIdAsync(branchId, token);
     }
+
+    public Task<IReadOnlyCollection<EmployeeResult>> GetEmployeesByBranchIdAsync(
+        int branchId,
+        CancellationToken cancellationToken)
+    {
+        return repository.GetEmployeesByBranchIdAsync(branchId, cancellationToken);
+    }
 }

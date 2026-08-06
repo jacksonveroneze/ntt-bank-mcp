@@ -27,4 +27,14 @@ public sealed class BranchRepository(
             return null;
         }
     }
+
+    public async Task<IReadOnlyCollection<EmployeeResult>> GetEmployeesByBranchIdAsync(
+        int branchId,
+        CancellationToken cancellationToken)
+    {
+        var result = await api.GetBranchEmployeesAsync(
+            branchId, cancellationToken);
+
+        return result;
+    }
 }

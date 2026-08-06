@@ -18,4 +18,11 @@ public interface IAccountRepository
     Task<IReadOnlyCollection<AccountTransactionResult>> GetTransactionsByAccountIdAsync(
         int accountId,
         CancellationToken cancellationToken);
+
+    Task<TransactionSummaryResult> GetTransactionsSummaryByAccountIdAsync(
+        int accountId,
+        string groupBy,
+        DateTime? from,
+        DateTime? toDate,
+        CancellationToken cancellationToken);
 }

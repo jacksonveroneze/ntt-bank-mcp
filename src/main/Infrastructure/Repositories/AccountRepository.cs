@@ -53,4 +53,17 @@ public sealed class AccountRepository(
 
         return result;
     }
+
+    public async Task<TransactionSummaryResult> GetTransactionsSummaryByAccountIdAsync(
+        int accountId,
+        string groupBy,
+        DateTime? from,
+        DateTime? toDate,
+        CancellationToken cancellationToken)
+    {
+        var result = await api.SummarizeAccountTransactionsAsync(
+            accountId, groupBy, from, toDate, cancellationToken);
+
+        return result;
+    }
 }
