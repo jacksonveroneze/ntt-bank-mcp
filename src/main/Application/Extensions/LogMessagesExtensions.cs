@@ -29,4 +29,19 @@ public static partial class LogMessagesExtensions
                   "Identifier: '{identifier}' - EmptyResult")]
     public static partial void LogEmptyResult(this ILogger logger,
         string className, string methodName, int identifier);
+
+    [LoggerMessage(
+        EventId = 1003,
+        Level = LogLevel.Information,
+        Message = "{className} - {methodName} - " +
+                  "Identifier: '{identifier}' - Count: {count}")]
+    public static partial void LogCollectionResult(this ILogger logger,
+        string className, string methodName, int identifier, int count);
+
+    [LoggerMessage(
+        EventId = 1004,
+        Level = LogLevel.Information,
+        Message = "{className} - {methodName} - Count: {count}")]
+    public static partial void LogCollectionResult(this ILogger logger,
+        string className, string methodName, int count);
 }

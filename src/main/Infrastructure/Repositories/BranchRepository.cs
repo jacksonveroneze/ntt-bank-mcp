@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
+using Microsoft.Extensions.Logging;
 using NttBankMcp.Application.Abstractions.Repositories;
+using NttBankMcp.Application.Extensions;
 using NttBankMcp.Domain.Results;
 using NttBankMcp.Infrastructure.HttpClients;
 using Refit;
@@ -9,7 +11,8 @@ namespace NttBankMcp.Infrastructure.Repositories;
 
 [ExcludeFromCodeCoverage]
 public sealed class BranchRepository(
-    INttBankApi api) : IBranchRepository
+    INttBankApi api,
+    ILogger<BranchRepository> logger) : IBranchRepository
 {
     public async Task<BranchResult?> GetByIdAsync(
         int branchId, CancellationToken cancellationToken)
@@ -24,6 +27,11 @@ public sealed class BranchRepository(
         catch (ApiException ex)
             when (ex.StatusCode is HttpStatusCode.NotFound)
         {
+            logger.LogNotFound(
+                nameof(BranchRepository),
+                nameof(GetByIdAsync), 
+                branchId);
+
             return null;
         }
     }
@@ -34,6 +42,12 @@ public sealed class BranchRepository(
     {
         var result = await api.GetBranchEmployeesAsync(
             branchId, cancellationToken);
+
+        logger.LogCollectionResult(
+            nameof(BranchRepository),
+            nameof(GetEmployeesByBranchIdAsync), 
+            branchId, 
+            result.Count);
 
         return result;
     }

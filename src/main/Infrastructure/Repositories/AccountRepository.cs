@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
+using Microsoft.Extensions.Logging;
 using NttBankMcp.Application.Abstractions.Repositories;
+using NttBankMcp.Application.Extensions;
 using NttBankMcp.Domain.Enums;
 using NttBankMcp.Domain.Results;
 using NttBankMcp.Infrastructure.HttpClients;
@@ -10,7 +12,8 @@ namespace NttBankMcp.Infrastructure.Repositories;
 
 [ExcludeFromCodeCoverage]
 public sealed class AccountRepository(
-    INttBankApi api) : IAccountRepository
+    INttBankApi api,
+    ILogger<AccountRepository> logger) : IAccountRepository
 {
     public async Task<IReadOnlyCollection<AccountResult>> GetAccountsByCustomerIdAsync(
         int customerId,
@@ -21,6 +24,12 @@ public sealed class AccountRepository(
         var result = await api.GetCustomerAccountsAsync(
             customerId, accountType, status,
             hasBalance: null, cancellationToken);
+
+        logger.LogCollectionResult(
+            nameof(AccountRepository),
+            nameof(GetAccountsByCustomerIdAsync),
+            customerId,
+            result.Count);
 
         return result;
     }
@@ -39,6 +48,11 @@ public sealed class AccountRepository(
         catch (ApiException ex)
             when (ex.StatusCode is HttpStatusCode.NotFound)
         {
+            logger.LogNotFound(
+                nameof(AccountRepository),
+                nameof(GetAccountByIdAsync),
+                accountId);
+
             return null;
         }
     }
@@ -50,6 +64,12 @@ public sealed class AccountRepository(
     {
         var result = await api.GetTransactionsByAccountIdAsync(
             accountId, cancellationToken);
+
+        logger.LogCollectionResult(
+            nameof(AccountRepository),
+            nameof(GetTransactionsByAccountIdAsync),
+            accountId,
+            result.Count);
 
         return result;
     }

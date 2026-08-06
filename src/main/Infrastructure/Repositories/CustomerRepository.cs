@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
+using Microsoft.Extensions.Logging;
 using NttBankMcp.Application.Abstractions.Repositories;
+using NttBankMcp.Application.Extensions;
 using NttBankMcp.Domain.Results;
 using NttBankMcp.Domain.Results.Common;
 using NttBankMcp.Infrastructure.HttpClients;
@@ -10,7 +12,8 @@ namespace NttBankMcp.Infrastructure.Repositories;
 
 [ExcludeFromCodeCoverage]
 public sealed class CustomerRepository(
-    INttBankApi api) : ICustomerRepository
+    INttBankApi api,
+    ILogger<CustomerRepository> logger) : ICustomerRepository
 {
     public async Task<CustomerResult?> GetByIdAsync(
         int customerId, CancellationToken cancellationToken)
@@ -25,6 +28,11 @@ public sealed class CustomerRepository(
         catch (ApiException ex)
             when (ex.StatusCode is HttpStatusCode.NotFound)
         {
+            logger.LogNotFound(
+                nameof(CustomerRepository),
+                nameof(GetByIdAsync), 
+                customerId);
+
             return null;
         }
     }
@@ -37,6 +45,11 @@ public sealed class CustomerRepository(
         var result = await api.GetCustomersAsync(
             page, pageSize, cancellationToken);
 
+        logger.LogCollectionResult(
+            nameof(CustomerRepository),
+            nameof(GetCustomersAsync), 
+            result.Items.Count);
+
         return result;
     }
 
@@ -46,6 +59,12 @@ public sealed class CustomerRepository(
     {
         var result = await api.GetCustomerRelationshipsAsync(
             customerId, cancellationToken);
+
+        logger.LogCollectionResult(
+            nameof(CustomerRepository),
+            nameof(GetRelationshipsByCustomerIdAsync), 
+            customerId, 
+            result.Count);
 
         return result;
     }
@@ -58,6 +77,12 @@ public sealed class CustomerRepository(
     {
         var result = await api.GetCustomerTicketsAsync(
             customerId, status, type, cancellationToken);
+
+        logger.LogCollectionResult(
+            nameof(CustomerRepository),
+            nameof(GetTicketsByCustomerIdAsync), 
+            customerId, 
+            result.Count);
 
         return result;
     }
