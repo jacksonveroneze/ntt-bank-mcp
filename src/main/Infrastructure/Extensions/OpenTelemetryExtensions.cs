@@ -47,7 +47,7 @@ public static class OpenTelemetryExtensions
         private IOpenTelemetryBuilder AddMetrics(
             AppConfiguration appConfiguration)
         {
-            builder.WithMetrics(opts => opts
+            builder.WithMetrics(options => options
                 .AddMeter(appConfiguration.Application.Name)
                 .AddProcessInstrumentation()
                 .AddAspNetCoreInstrumentation()
@@ -66,16 +66,16 @@ public static class OpenTelemetryExtensions
                 return builder;
             }
 
-            builder.WithTracing(tracing =>
+            builder.WithTracing(options =>
             {
-                tracing
+                options
                     .AddSource(appConfiguration.Application.Name)
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
                     .AddRedisInstrumentation()
                     .AddSource(appConfiguration.Application.Name);
 
-                tracing.AddOtlpExporter(config => config.Endpoint =
+                options.AddOtlpExporter(config => config.Endpoint =
                     appConfiguration.OpenTelemetry.EndpointTracing);
             });
 

@@ -20,9 +20,11 @@ internal static class HealthCheckExtensions
             .AddCheck("self", () => HealthCheckResult.Healthy(), tags: ["live"])
             .AddRedis(appConfiguration.Cache.Endpoint!, name: "redis", tags: ["ready", "startup"],
                 timeout: TimeSpan.FromSeconds(2));
+
+        return services;
     }
 
-    public static WebApplication AddEndpoints(
+    public static WebApplication AddHealthCheckEndpoints(
         this WebApplication app)
     {
         ArgumentNullException.ThrowIfNull(app);

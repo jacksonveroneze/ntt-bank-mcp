@@ -29,7 +29,7 @@ internal static class WebApplicationBuilderExtensions
                 .AddFluentValidation(AssemblyReference.Assembly)
                 .AddMapper(AssemblyReference.Assembly)
                 .AddOpenTelemetry(appConfiguration)
-                .AddHealthChecks();
+                .AddHealthCheck(appConfiguration);
 
             return builder;
         }

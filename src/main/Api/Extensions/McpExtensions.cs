@@ -24,12 +24,14 @@ public static class McpExtensions
                 };
             })
             .AddAuthorizationFilters()
+            .AddOpenTelemetryFilter()
             .AddExceptionFilter()
             .WithHttpTransport(options => { options.Stateless = true; })
             .WithTools<GetCustomerByIdTool>()
             .WithTools<ListCustomerAccountsTool>()
             .WithTools<GetAccountTool>()
             .WithTools<ListAccountTransactionsTool>()
+            .WithTools<SummarizeAccountTransactionsTool>()
             .WithPrompts<ComplexPromptType>();
 
         return services;

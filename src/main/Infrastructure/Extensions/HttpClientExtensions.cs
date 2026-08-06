@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using CorrelationId.HttpClient;
 using Duende.AccessTokenManagement;
-using Duende.IdentityModel.Client;
 using Microsoft.Extensions.DependencyInjection;
 using NttBankMcp.Infrastructure.Configurations;
 using NttBankMcp.Infrastructure.HttpClients;
@@ -23,6 +23,7 @@ public static class HttpClientExtensions
             {
                 config.BaseAddress = appConfiguration.HttpClientNttBank.Address;
             })
+            .AddCorrelationIdForwarding()
             .AddClientCredentialsTokenHandler(
                 ClientCredentialsClientName.Parse(appConfiguration.HttpClientNttBank.Name))
             .AddStandardResilienceHandler();

@@ -4,20 +4,19 @@ namespace NttBankMcp.Api.Extensions;
 
 internal static class WebApplicationExtensions
 {
-    private const string PathHealth = "/health";
     private const string PathMetrics = "metrics";
     private const string PathMcp = "/mcp";
-    
+
     public static WebApplication Configure(
         this WebApplication app)
     {
         ArgumentNullException.ThrowIfNull(app);
 
         app.UseCorrelationId();
-        
+
         app.UseRouting();
 
-        app.UseHealthChecks(PathHealth);
+        app.AddHealthCheckEndpoints();
         app.UseOpenTelemetryPrometheusScrapingEndpoint(PathMetrics);
 
         app.UseAuthentication();
@@ -25,7 +24,7 @@ internal static class WebApplicationExtensions
 
         app.MapMcp(PathMcp)
             .RequireAuthorization();
-        
+
         return app;
     }
 }
